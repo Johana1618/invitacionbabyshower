@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Espacio para la foto">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7e6e2"/>
+      <stop offset="1" stop-color="#f0d9d3"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#g)"/>
+  <g fill="none" stroke="#c96b7a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <path d="M300 400s-95-58-95-124a51 51 0 0 1 95-29 51 51 0 0 1 95 29c0 66-95 124-95 124z"/>
+  </g>
+  <text x="300" y="460" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="30" fill="#c96b7a">Foto de Johana &amp; Jhon</text>
+  <text x="300" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#8a7274">assets/foto-padres.jpg</text>
+</svg>

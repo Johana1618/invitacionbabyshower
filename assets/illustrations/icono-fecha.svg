@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Calendario">
+  <path d="M35 18c0-3 0-6-1-8" fill="none" stroke="#c98a95" stroke-width="4" stroke-linecap="round"/>
+  <path d="M65 18c0-3 0-6 1-8" fill="none" stroke="#c98a95" stroke-width="4" stroke-linecap="round"/>
+  <path d="M20 26q-3 0-3 4v54q0 4 4 4h58q4 0 4-4V30q0-4-3-4Z" fill="#fbf3ec" stroke="#c98a95" stroke-width="3.2"/>
+  <path d="M17 41q33-4 66 0v-11q0-4-3-4H20q-3 0-3 4Z" fill="#f6d9e0" stroke="#c98a95" stroke-width="3.2"/>
+  <path d="M50 70c-8-6-13-13-9-19a8 8 0 0 1 9-2 8 8 0 0 1 9 2c4 6-1 13-9 19z" fill="#e8837e" stroke="#c98a95" stroke-width="1.6"/>
+</svg>

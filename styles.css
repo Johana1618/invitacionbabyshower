@@ -1,0 +1,853 @@
+/* ==========================================================================
+   Baby Shower — estilos mobile-first
+   Base = celular (320–430px). Luego min-width: 768px (tablet) y 1024px (escritorio).
+   ========================================================================== */
+
+:root {
+  /* Paleta — acuarela tierna, limpia y vibrante: cielo, sol, menta y rosa */
+  --bg: #fffdf9;
+  --bg-soft: #fef1ec;
+  --bg-mint: #f0f8ef;
+  --bg-sky: #eef6fb;
+  --bg-lavender: #f7f1fa;
+  --surface: #ffffff;
+  --ink: #5c4f58;
+  --ink-soft: #998b93;
+  --accent: #ffc7bd;
+  --accent-strong: #e8837e;
+  --gold: #ffc94d;
+  --gold-strong: #e0a83a;
+  --sky: #7dc8ea;
+  --sky-strong: #4fa4c9;
+  --sage: #5fd1a3;
+  --sage-strong: #3fae82;
+  --lavender-strong: #9c7cc4;
+  --line: #fbe6e0;
+  --error: #d1483f;
+
+  /* Tipografía: script fino y fluido para el nombre, serif suave para títulos, redonda y delicada para cuerpo */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-name: "Sacramento", cursive;
+  --font-script: "Caveat", cursive;
+  --font-sans: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-countdown: "Yanone Kaffeesatz", "Nunito", sans-serif;
+  --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-eyebrow: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
+  --fs-h2: clamp(1.6rem, 1.4rem + 1.5vw, 2.25rem);
+  --fs-hero: clamp(3.25rem, 2.2rem + 7vw, 5.5rem);
+  --fs-script: clamp(1.25rem, 1.1rem + 1vw, 1.75rem);
+
+  /* Escala de espaciado (8 · 16 · 24 · 32 · 48 · 64 · 96) */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2rem;
+  --s-5: 3rem;
+  --s-6: 4rem;
+  --s-7: 6rem;
+
+  --section-py: clamp(var(--s-5), 9vw, var(--s-6));
+  --gutter: clamp(var(--s-2), 5vw, var(--s-4));
+  --radius: 1rem;
+  --radius-lg: 1.75rem;
+  --tap: 2.75rem; /* 44px */
+
+  --shadow: 0 0.5rem 1.5rem rgba(232, 131, 126, 0.12);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 450ms;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-width: 20rem;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, iframe { display: block; max-width: 100%; }
+h1, h2, h3, p, figure, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  position: relative;
+  z-index: 1; /* el contenido siempre por encima de las mariposas/flores decorativas */
+  width: 100%;
+  max-width: 30rem; /* ~480px de ancho de lectura en celular */
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  text-align: center;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-py);
+  overflow: hidden;
+}
+
+.section--soft { background: var(--bg-soft); }
+/* Fondos con degradado suave hacia el crema en los bordes,
+   para que el cambio de color entre secciones no sea tan brusco */
+.section--mint {
+  background: linear-gradient(to bottom,
+    var(--bg) 0%, var(--bg-mint) 18%, var(--bg-mint) 82%, var(--bg) 100%);
+}
+.section--sky {
+  background: linear-gradient(to bottom,
+    var(--bg) 0%, var(--bg-sky) 18%, var(--bg-sky) 82%, var(--bg) 100%);
+}
+.section--lavender {
+  background: linear-gradient(to bottom,
+    var(--bg) 0%, var(--bg-lavender) 18%, var(--bg-lavender) 82%, var(--bg) 100%);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  margin-bottom: var(--s-3);
+}
+
+.section__title--sm {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+}
+
+.section__text {
+  color: var(--ink-soft);
+  margin-bottom: var(--s-4);
+}
+
+.eyebrow {
+  font-family: var(--font-script);
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  margin-bottom: var(--s-1);
+}
+
+/* Color del eyebrow distinto por sección, para que contraste con su fondo
+   (misma tipografía en todas, solo cambia el color) */
+.eyebrow--caps {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: var(--fs-eyebrow);
+}
+
+.section--mint .eyebrow { color: var(--sage-strong); }
+#cuenta .eyebrow { color: var(--sky-strong); }
+.section--sky .eyebrow { color: var(--gold-strong); }
+#mapa .eyebrow { color: var(--lavender-strong); }
+.section--lavender .eyebrow { color: var(--accent-strong); }
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-4);
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0.75rem var(--s-4);
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn--primary {
+  background: var(--accent-strong);
+  color: #fff;
+  box-shadow: 0 0.5rem 1.25rem rgba(201, 107, 122, 0.35);
+}
+.btn--primary:hover { background: #b3596a; }
+.btn--primary[disabled] { opacity: 0.6; cursor: progress; }
+
+.btn--ghost {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  background: transparent;
+}
+.btn--ghost:hover { background: var(--accent); color: #fff; }
+
+.btn--block { width: 100%; }
+
+.btn--sm {
+  min-height: var(--tap);
+  padding: 0.3rem 1.15rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+/* ---------- 1. Portada ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+  min-height: 80svh;
+  padding-top: max(var(--section-py), env(safe-area-inset-top));
+  background:
+    radial-gradient(1.4px 1.4px at 12% 20%, var(--accent) 40%, transparent 41%),
+    radial-gradient(1.8px 1.8px at 82% 15%, var(--gold) 40%, transparent 41%),
+    radial-gradient(1.4px 1.4px at 25% 78%, var(--sky) 40%, transparent 41%),
+    radial-gradient(1.8px 1.8px at 88% 68%, var(--accent) 40%, transparent 41%),
+    radial-gradient(1.4px 1.4px at 55% 88%, var(--sage) 40%, transparent 41%),
+    radial-gradient(1.4px 1.4px at 68% 30%, var(--sky) 40%, transparent 41%),
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(255, 199, 189, 0.28), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 50% 65%, rgba(125, 200, 234, 0.12), transparent 55%),
+    var(--bg);
+}
+
+.hero__decor { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+
+.hero__sun {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  width: clamp(4rem, 9vw, 5.75rem);
+}
+
+.butterfly {
+  position: absolute;
+  width: 3.75rem;
+}
+.butterfly--1 { top: 16%; right: 8%; }
+
+.flower {
+  position: absolute;
+  width: 2.75rem;
+}
+.flower--sm { width: 1.9rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .butterfly--1 { animation: floatButterfly 6.5s ease-in-out infinite; }
+  .hero__sun { animation: sunGlow 5s ease-in-out infinite; }
+  .bunny { animation: floatGentle 6.5s ease-in-out infinite; }
+  .deco--tr { animation: floatButterfly 6.5s ease-in-out infinite; }
+  .deco--tl { animation: floatButterfly 5.8s ease-in-out infinite 0.5s; }
+  .deco--br { animation: floatButterfly 7s ease-in-out infinite 1s; }
+  .deco--bl { animation: floatButterfly 6.2s ease-in-out infinite 0.8s; }
+}
+
+@keyframes floatButterfly {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+  50% { transform: translate(-6px, -14px) rotate(6deg); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-4px, -9px); }
+}
+
+@keyframes sunGlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Mariposas decorativas en el resto de las secciones */
+.deco-butterfly {
+  position: absolute;
+  width: 2.75rem;
+  pointer-events: none;
+}
+.deco-butterfly--sm { width: 1.9rem; }
+.deco--tr { top: 6%; right: 6%; }
+.deco--tl { top: 8%; left: 6%; }
+.deco--br { bottom: 8%; right: 8%; }
+.deco--bl { bottom: 10%; left: 6%; }
+
+/* Variación de tamaño por sección: la de la foto un poco más grande,
+   la del RSVP más discreta para no distraer del formulario */
+#foto .deco-butterfly:not(.deco-butterfly--sm) { width: 3.25rem; }
+#rsvp .deco-butterfly:not(.deco-butterfly--sm) { width: 2.25rem; }
+
+.hero__stroller {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  width: clamp(8rem, 29vw, 10.5rem);
+  transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__stroller {
+    animation: strollerArrive 2.6s var(--ease-out) 0.4s both;
+  }
+}
+
+@keyframes strollerArrive {
+  0% { transform: translateX(calc(-50% - 60vw)) rotate(-3deg); opacity: 0; }
+  70% { transform: translateX(calc(-50% + 0.4rem)) rotate(1deg); opacity: 1; }
+  100% { transform: translateX(-50%) rotate(0deg); opacity: 1; }
+}
+
+/* Conejito decorativo (cuenta regresiva) */
+.bunny {
+  width: clamp(8rem, 30vw, 10rem);
+  height: auto;
+  margin: 0 auto var(--s-3);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+  margin-top: clamp(7rem, 23vw, 10rem);
+}
+
+.hero__wreath {
+  width: min(100%, 14rem);
+  height: auto;
+  color: var(--sage);
+  margin-bottom: var(--s-1);
+}
+
+.hero__script {
+  font-family: var(--font-script);
+  font-size: var(--fs-script);
+  font-weight: 600;
+  color: var(--accent-strong);
+  margin-bottom: var(--s-1);
+}
+
+.hero__title {
+  font-family: var(--font-name);
+  font-weight: 400;
+  font-size: var(--fs-hero);
+  line-height: 1.1;
+  color: var(--accent-strong);
+  margin-bottom: var(--s-2);
+  transform-origin: 50% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__title { animation: nameSway 6s ease-in-out infinite; }
+}
+
+@keyframes nameSway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+.hero__lead {
+  color: var(--ink-soft);
+  max-width: 22rem;
+  margin-bottom: var(--s-3);
+}
+
+.hero__scroll {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  margin-top: var(--s-4);
+  color: var(--ink-soft);
+}
+
+.hero__scroll svg,
+.music-toggle svg,
+.footer__heart {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero__scroll svg { width: 1.5rem; height: 1.5rem; }
+
+/* ---------- 2. Foto ---------- */
+.photo {
+  position: relative;
+  margin: 0 auto var(--s-3);
+  width: min(100%, 15rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 0.5rem solid var(--surface);
+  outline: 1.5px dashed var(--accent);
+  outline-offset: 0.6rem;
+  background: var(--surface);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo__badge {
+  position: absolute;
+  bottom: -0.5rem;
+  right: -0.5rem;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  box-shadow: var(--shadow);
+}
+.photo__badge svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #fff;
+}
+
+/* ---------- 3. Cuenta regresiva ---------- */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.countdown__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 0.25rem;
+  border-right: 1px dashed var(--line);
+}
+.countdown__item:last-child { border-right: none; }
+
+.countdown__num {
+  font-family: var(--font-countdown);
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-strong);
+}
+
+.countdown__label {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+.countdown__done {
+  margin-top: var(--s-3);
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  color: var(--accent-strong);
+}
+
+/* ---------- 4. Detalles (sin tarjetas: lista separada por líneas punteadas) ---------- */
+.cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-block: var(--s-3);
+  border-bottom: 1px dashed var(--line);
+}
+.card:last-child { border-bottom: none; }
+
+.card__icon-wrap {
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--accent-strong);
+  filter: drop-shadow(0 2px 3px rgba(92, 79, 88, 0.14));
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.card__text { color: var(--ink-soft); }
+
+/* ---------- 5. Mapa ---------- */
+.map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+}
+
+.map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- 6. RSVP ---------- */
+.form {
+  display: grid;
+  gap: var(--s-3);
+  text-align: left;
+  max-width: 16rem;
+  margin-inline: auto;
+}
+
+.field {
+  display: grid;
+  gap: var(--s-1);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.field > label,
+.field legend {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  padding: 0;
+}
+.field legend { margin-bottom: 0.25rem; }
+
+.optional { font-weight: 500; color: var(--ink-soft); }
+
+.field input[type="text"],
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 1rem; /* ≥16px evita el zoom automático en iOS */
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 0.7rem;
+  box-shadow: 0 1px 2px rgba(92, 79, 88, 0.05);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a7274' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+}
+
+.field textarea { resize: vertical; min-height: 3.25rem; line-height: 1.4; }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 199, 189, 0.35);
+}
+
+.field input[aria-invalid="true"] { border-color: var(--error); }
+
+.field__error {
+  min-height: 0;
+  font-size: var(--fs-small);
+  color: var(--error);
+}
+.field__error:empty { display: none; }
+
+.choice-group { display: grid; gap: var(--s-1); }
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.25rem;
+  border: 1.5px solid var(--line);
+  border-radius: 0.7rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(92, 79, 88, 0.05);
+  cursor: pointer;
+  font-weight: 600 !important;
+  font-size: 0.9rem;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.choice input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 65%;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.choice input[type="radio"]:checked {
+  border-color: var(--accent-strong);
+  background-color: var(--accent-strong);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.3l3 3 6-7' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.choice input[type="radio"]:focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.choice:has(input:checked) {
+  border-color: var(--accent);
+  background: #fef2ee;
+}
+
+/* ---------- Resultado del RSVP ---------- */
+.rsvp-result {
+  text-align: center;
+  padding-block: var(--s-2);
+}
+
+.rsvp-result__emoji {
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-bottom: var(--s-1);
+}
+
+.rsvp-result__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--accent-strong);
+  margin-bottom: 0.25rem;
+}
+
+.rsvp-result__text {
+  color: var(--ink-soft);
+}
+
+/* Respuesta "sí": entrada alegre con un pequeño rebote */
+.rsvp-result.is-yes {
+  opacity: 0;
+  transform: scale(0.9) translateY(6px);
+}
+.rsvp-result.is-yes.is-visible {
+  animation: rsvpPop 650ms var(--ease-out) both;
+}
+
+/* Respuesta "no": mensaje sencillo, solo un fundido tranquilo, sin rebote ni emoji */
+.rsvp-result.is-no .rsvp-result__emoji { display: none; }
+.rsvp-result.is-no .rsvp-result__title {
+  font-style: normal;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.rsvp-result.is-no {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.rsvp-result.is-no.is-visible {
+  animation: rsvpFade 500ms ease-out both;
+}
+
+@keyframes rsvpPop {
+  0% { opacity: 0; transform: scale(0.85) translateY(10px); }
+  65% { opacity: 1; transform: scale(1.05) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes rsvpFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-result.is-yes,
+  .rsvp-result.is-no {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+  padding: var(--s-5) var(--gutter) max(var(--s-5), env(safe-area-inset-bottom));
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+  color: var(--accent-strong);
+  background: var(--bg);
+}
+
+.footer__heart {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--accent);
+  fill: var(--accent);
+}
+
+/* ---------- Botón de música ---------- */
+.music-toggle {
+  position: fixed;
+  z-index: 10;
+  right: max(var(--s-2), env(safe-area-inset-right));
+  bottom: max(var(--s-2), env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent-strong);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.music-toggle[hidden] { display: none; }
+.music-toggle svg { width: 1.35rem; height: 1.35rem; }
+.music-toggle .icon-pause { display: none; }
+.music-toggle[aria-pressed="true"] .icon-play { display: none; }
+.music-toggle[aria-pressed="true"] .icon-pause { display: block; }
+
+/* ==========================================================================
+   Animaciones (solo si hay JS y el usuario no pidió movimiento reducido)
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-animate] {
+    opacity: 0;
+    transition:
+      opacity var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
+    transition-delay: var(--delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .js [data-animate="hero"],
+  .js [data-animate="fade-up"] { transform: translate3d(0, 1.5rem, 0); }
+  .js [data-animate="scale"] { transform: scale(0.95); }
+
+  .js [data-animate].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js [data-animate="hero"] { transition-duration: 500ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Tablet (768px+)
+   ========================================================================== */
+@media (min-width: 48em) {
+  .container { max-width: 36rem; }
+  .container--wide { max-width: 44rem; }
+
+  .cards { flex-direction: row; justify-content: center; }
+  .card {
+    flex: 1;
+    padding-block: 0;
+    padding-inline: var(--s-3);
+    border-bottom: none;
+    border-right: 1px dashed var(--line);
+  }
+  .card:last-child { border-right: none; }
+
+  .photo { width: min(100%, 23rem); }
+}
+
+/* ==========================================================================
+   Escritorio (1024px+)
+   ========================================================================== */
+@media (min-width: 64em) {
+  .container--wide { max-width: 56rem; }
+
+  .map { aspect-ratio: 16 / 9; }
+
+  .btn--ghost:hover,
+  .card:hover { transform: translateY(-2px); }
+  .card { transition: transform 250ms var(--ease-out); }
+}
