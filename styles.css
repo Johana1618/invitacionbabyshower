@@ -252,12 +252,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: clamp(4rem, 9vw, 5.75rem);
 }
 
-.butterfly {
-  position: absolute;
-  width: 3.75rem;
-}
-.butterfly--1 { top: 16%; right: 8%; }
-
 .flower {
   position: absolute;
   width: 2.75rem;
@@ -265,13 +259,69 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .flower--sm { width: 1.9rem; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .butterfly--1 { animation: floatButterfly 6.5s ease-in-out infinite; }
   .hero__sun { animation: sunGlow 5s ease-in-out infinite; }
   .bunny { animation: floatGentle 6.5s ease-in-out infinite; }
   .deco--tr { animation: floatButterfly 6.5s ease-in-out infinite; }
   .deco--tl { animation: floatButterfly 5.8s ease-in-out infinite 0.5s; }
   .deco--br { animation: floatButterfly 7s ease-in-out infinite 1s; }
   .deco--bl { animation: floatButterfly 6.2s ease-in-out infinite 0.8s; }
+}
+
+/* Mariposas que cruzan la portada: el span vuela, la imagen aletea.
+   Sin animación se quedan quietas en su sitio */
+.flyer {
+  position: absolute;
+  left: 0;
+  width: 3.1rem;
+  transform: translateX(var(--rest));
+}
+.flyer img { width: 100%; }
+/* La azul, pasada a morado */
+.flyer--purple img { filter: hue-rotate(70deg) saturate(1.3); }
+.flyer--1 { top: 30%; --rest: 6vw; }
+.flyer--2 { top: 55%; --rest: 80vw; width: 2.8rem; }
+.flyer--3 { top: 78%; --rest: 40vw; width: 2.6rem; }
+.flyer--4 { top: 14%; --rest: 75vw; width: 3.4rem; }
+.flyer--5 { top: 68%; --rest: 10vw; width: 2.6rem; }
+.flyer--6 { top: 44%; --rest: 82vw; width: 2.5rem; }
+.flyer--7 { top: 62%; --rest: 30vw; width: 2.8rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .flyer--1 { animation: flyAcross 16s linear infinite; }
+  .flyer--2 { animation: flyAcrossBack 19s linear infinite -7s; }
+  .flyer--3 { animation: flyAcross 22s linear infinite -14s; }
+  .flyer--4 { animation: flyAcrossBack 18s linear infinite -3s; }
+  .flyer--5 { animation: flyAcross 20s linear infinite -10s; }
+  .flyer--6 { animation: flyAcrossBack 24s linear infinite -17s; }
+  .flyer--7 { animation: flyAcross 21s linear infinite -5s; }
+  .flyer img { animation: flap 0.35s ease-in-out infinite alternate; }
+  .flyer--2 img,
+  .flyer--6 img { animation-duration: 0.42s; }
+  .flyer--4 img,
+  .flyer--7 img { animation-duration: 0.3s; }
+}
+
+/* Cruza de izquierda a derecha en ondas */
+@keyframes flyAcross {
+  0% { transform: translate(-15vw, 0) rotate(8deg); }
+  25% { transform: translate(20vw, -2.5rem) rotate(-6deg); }
+  50% { transform: translate(50vw, 0.5rem) rotate(8deg); }
+  75% { transform: translate(80vw, -2rem) rotate(-6deg); }
+  100% { transform: translate(115vw, 0) rotate(8deg); }
+}
+
+/* De derecha a izquierda, mirando hacia donde va */
+@keyframes flyAcrossBack {
+  0% { transform: translate(115vw, 0) scaleX(-1) rotate(8deg); }
+  25% { transform: translate(80vw, -2rem) scaleX(-1) rotate(-6deg); }
+  50% { transform: translate(50vw, 0.5rem) scaleX(-1) rotate(8deg); }
+  75% { transform: translate(20vw, -2.5rem) scaleX(-1) rotate(-6deg); }
+  100% { transform: translate(-15vw, 0) scaleX(-1) rotate(8deg); }
+}
+
+@keyframes flap {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0.55); }
 }
 
 @keyframes floatButterfly {
