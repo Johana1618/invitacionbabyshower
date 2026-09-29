@@ -18,24 +18,28 @@
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
   <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <!-- ?v=: cambiarlo en cada subida para que los celulares no usen el CSS/JS viejo guardado -->
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
+
+  <!-- Formas y colores de nubes y estrellitas (las usan el sobre y la portada;
+       van fuera del sobre porque el sobre se borra al abrirlo) -->
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="nubeRosa" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#fdf1f3"/><stop offset="0.55" stop-color="#f5d3da"/><stop offset="1" stop-color="#e8b3bf"/></radialGradient>
+      <radialGradient id="nubeGris" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff"/><stop offset="0.6" stop-color="#eeeef1"/><stop offset="1" stop-color="#cfcfd6"/></radialGradient>
+      <radialGradient id="estrella" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#fbe4e9"/><stop offset="1" stop-color="#e8a9b7"/></radialGradient>
+      <symbol id="nube" viewBox="0 0 200 110"><path d="M30 105C8 105 0 85 12 72 4 52 26 38 44 46 50 20 88 12 104 34 118 16 152 20 156 46 178 42 196 60 188 80 200 96 188 108 170 105Z"/></symbol>
+      <symbol id="estrellita" viewBox="0 0 24 24"><path d="M12 2.5l2.8 6 6.6.7-5 4.5 1.4 6.5L12 17l-5.8 3.2 1.4-6.5-5-4.5 6.6-.7Z" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+      <symbol id="corazon" viewBox="0 0 24 24"><path d="M12 20.5l-1.3-1.2C5.6 14.7 2.5 11.9 2.5 8.4 2.5 5.6 4.7 3.5 7.4 3.5c1.6 0 3.2.8 4.6 2.2 1.4-1.4 3-2.2 4.6-2.2 2.7 0 4.9 2.1 4.9 4.9 0 3.5-3.1 6.3-8.2 10.9L12 20.5z"/></symbol>
+    </defs>
+  </svg>
 
   <!-- Sobre de bienvenida: al tocar el corazón suena la música y se abre la invitación.
        Solo se muestra si hay JS (sin JS se ve la invitación directamente). -->
   <div class="envelope" id="envelope">
     <!-- Cielo de acuarela: nubes rosadas y grises con estrellitas -->
     <div class="envelope__sky" aria-hidden="true">
-      <svg width="0" height="0" focusable="false">
-        <defs>
-          <radialGradient id="nubeRosa" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#fdf1f3"/><stop offset="0.55" stop-color="#f5d3da"/><stop offset="1" stop-color="#e8b3bf"/></radialGradient>
-          <radialGradient id="nubeGris" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff"/><stop offset="0.6" stop-color="#eeeef1"/><stop offset="1" stop-color="#cfcfd6"/></radialGradient>
-          <radialGradient id="estrella" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#fbe4e9"/><stop offset="1" stop-color="#e8a9b7"/></radialGradient>
-          <symbol id="nube" viewBox="0 0 200 110"><path d="M30 105C8 105 0 85 12 72 4 52 26 38 44 46 50 20 88 12 104 34 118 16 152 20 156 46 178 42 196 60 188 80 200 96 188 108 170 105Z"/></symbol>
-          <symbol id="estrellita" viewBox="0 0 24 24"><path d="M12 2.5l2.8 6 6.6.7-5 4.5 1.4 6.5L12 17l-5.8 3.2 1.4-6.5-5-4.5 6.6-.7Z" stroke-width="2.2" stroke-linejoin="round"/></symbol>
-        </defs>
-      </svg>
       <svg class="cloud cloud--1" fill="url(#nubeRosa)"><use href="#nube"/></svg>
       <svg class="cloud cloud--2" fill="url(#nubeRosa)"><use href="#nube"/></svg>
       <svg class="cloud cloud--3" fill="url(#nubeGris)"><use href="#nube"/></svg>
@@ -90,31 +94,57 @@
     <header class="hero section" id="inicio">
       <div class="hero__decor" aria-hidden="true">
         <img class="hero__sun" src="assets/illustrations/sol.png" alt="">
+        <!-- Nubes suaves a los lados -->
+        <svg class="hero-cloud hero-cloud--1" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+        <svg class="hero-cloud hero-cloud--2" fill="url(#nubeGris)"><use href="#nube"/></svg>
+        <svg class="hero-cloud hero-cloud--3" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+        <svg class="hero-cloud hero-cloud--4" fill="url(#nubeGris)"><use href="#nube"/></svg>
+        <svg class="hero-cloud hero-cloud--5" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+        <!-- Corazoncitos (rellenos y de contorno) y puntitos dorados -->
+        <svg class="hero-heart" style="top: 8%; right: 32%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart hero-heart--line" style="top: 15%; right: 6%; --z: 0.95rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart hero-heart--line" style="top: 21%; left: 5%; --z: 0.85rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart" style="top: 34%; right: 7%; --z: 0.75rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart" style="top: 44%; left: 9%; --z: 0.8rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart hero-heart--line" style="top: 60%; right: 5%; --z: 0.95rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart hero-heart--line" style="top: 79%; left: 8%; --z: 0.85rem"><use href="#corazon"/></svg>
+        <svg class="hero-heart" style="top: 88%; right: 20%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <span class="hero-dot" style="top: 13%; left: 22%"></span>
+        <span class="hero-dot" style="top: 25%; right: 20%"></span>
+        <span class="hero-dot" style="top: 38%; left: 14%"></span>
+        <span class="hero-dot" style="top: 50%; right: 12%"></span>
+        <span class="hero-dot" style="top: 63%; left: 20%"></span>
+        <span class="hero-dot" style="top: 74%; right: 4%"></span>
+        <span class="hero-dot" style="top: 86%; left: 36%"></span>
+        <span class="hero-dot" style="top: 93%; right: 40%"></span>
         <!-- Mariposas que cruzan la portada volando -->
         <span class="flyer flyer--1"><img src="assets/illustrations/mariposa.png" width="48" height="40" alt=""></span>
-        <span class="flyer flyer--2 flyer--purple"><img src="assets/illustrations/mariposa-3.png" width="48" height="40" alt=""></span>
-        <span class="flyer flyer--3"><img src="assets/illustrations/mariposa-2.png" width="48" height="40" alt=""></span>
-        <span class="flyer flyer--4"><img src="assets/illustrations/mariposa-1.png" width="48" height="40" alt=""></span>
-        <span class="flyer flyer--5 flyer--purple"><img src="assets/illustrations/mariposa-3.png" width="48" height="40" alt=""></span>
-        <span class="flyer flyer--6"><img src="assets/illustrations/mariposa.png" width="48" height="40" alt=""></span>
+        <span class="flyer flyer--2"><img src="assets/illustrations/mariposa-1.png" width="48" height="40" alt=""></span>
+        <span class="flyer flyer--4"><img src="assets/illustrations/mariposa.png" width="48" height="40" alt=""></span>
         <span class="flyer flyer--7"><img src="assets/illustrations/mariposa-1.png" width="48" height="40" alt=""></span>
       </div>
       <div class="container hero__inner" data-animate="hero">
         <p class="eyebrow eyebrow--caps">Baby Shower</p>
-        <!-- Cigüeña: entra volando desde la izquierda y luego se queda aleteando suave -->
-        <img class="hero__stork" src="assets/illustrations/ciguena.png" alt="">
         <p class="hero__script">Falta poquito para conocer a</p>
+        <!-- Cigüeña: entra volando desde la izquierda y luego se queda aleteando suave -->
+        <div class="hero__stork-box">
+          <!-- Caminito punteado con un corazón que deja la cigüeña al volar -->
+          <svg class="hero__trail" viewBox="0 0 120 60" aria-hidden="true" focusable="false">
+            <path d="M2 54C20 56 30 50 40 44 50 38 50 26 44 22 38 18 32 24 36 30 40 36 52 38 62 34 80 28 98 22 118 18"/>
+          </svg>
+          <img class="hero__stork" src="assets/illustrations/ciguena.png" alt="">
+        </div>
         <h1 class="hero__title">Nihan</h1>
         <p class="hero__lead">Estamos esperando con mucho amor a una princesita muy especial y queremos celebrarlo contigo.</p>
-        <a class="hero__scroll" href="#foto" aria-label="Ver más">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
+        <!-- Separador: línea, corazón, línea -->
+        <div class="hero__divider" aria-hidden="true">
+          <svg><use href="#corazon"/></svg>
+        </div>
       </div>
     </header>
 
     <!-- 2. FOTO DE PADRES / ECOGRAFÍA -->
     <section class="section section--mint" id="foto" aria-labelledby="foto-titulo">
-      <img class="deco-butterfly deco--tr" src="assets/illustrations/mariposa-2.png" alt="" aria-hidden="true">
       <img class="flower flower--sm deco--bl" src="assets/illustrations/flor-1.png" alt="" aria-hidden="true">
       <div class="container">
         <figure class="photo" data-animate="scale">
@@ -131,7 +161,7 @@
 
     <!-- 3. CUENTA REGRESIVA -->
     <section class="section" id="cuenta" aria-labelledby="cuenta-titulo">
-      <img class="deco-butterfly deco--tl" src="assets/illustrations/mariposa-3.png" alt="" aria-hidden="true">
+      <img class="deco-butterfly deco--tl butterfly-purple" src="assets/illustrations/mariposa-3.png" alt="" aria-hidden="true">
       <div class="container">
         <img class="bunny" src="assets/illustrations/conejito.png" alt="" data-animate="fade">
         <p class="eyebrow">Faltan</p>
@@ -177,7 +207,7 @@
 
     <!-- 5. MAPA -->
     <section class="section" id="mapa" aria-labelledby="mapa-titulo">
-      <img class="deco-butterfly deco--bl" src="assets/illustrations/mariposa-2.png" alt="" aria-hidden="true">
+      <img class="deco-butterfly deco--bl" src="assets/illustrations/mariposa.png" alt="" aria-hidden="true">
       <div class="container">
         <p class="eyebrow" data-animate="fade">¿Cómo llegar?</p>
         <h2 class="section__title" id="mapa-titulo" data-animate="fade">San Carlos, Antioquia</h2>
@@ -192,7 +222,7 @@
 
     <!-- 6. RSVP -->
     <section class="section section--lavender" id="rsvp" aria-labelledby="rsvp-titulo">
-      <img class="deco-butterfly deco--br" src="assets/illustrations/mariposa-3.png" alt="" aria-hidden="true">
+      <img class="deco-butterfly deco--br butterfly-purple" src="assets/illustrations/mariposa-3.png" alt="" aria-hidden="true">
       <div class="container">
         <div data-animate="fade-up">
           <p class="eyebrow">Te esperamos</p>
@@ -238,6 +268,6 @@
     <p>Gracias por ser parte de este momento</p>
   </footer>
 
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
 </body>
 </html>
