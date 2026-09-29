@@ -12,7 +12,7 @@ const CONFIG = {
 
   // Canción: ruta al archivo en assets/ (ej. 'assets/cancion.mp3').
   // Vacío = el botón de música no aparece.
-  songSrc: '',
+  songSrc: 'assets/cancion.wav',
 
   // Endpoint del RSVP (Formspree, Getform, Google Apps Script, etc.).
   // Vacío = modo demostración: el formulario muestra éxito sin enviar nada.
@@ -33,9 +33,14 @@ function initAnimations() {
     return;
   }
 
-  // La portada se anima al cargar, no al hacer scroll
+  // La portada se anima al cargar (o al abrir el sobre), no al hacer scroll
   const hero = document.querySelector('[data-animate="hero"]');
-  if (hero) requestAnimationFrame(() => requestAnimationFrame(() => reveal(hero)));
+  const revealHero = () => requestAnimationFrame(() => requestAnimationFrame(() => reveal(hero)));
+  if (hero && document.getElementById('envelope')) {
+    document.addEventListener('invitacion-abierta', revealHero, { once: true });
+  } else if (hero) {
+    revealHero();
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -111,11 +116,12 @@ function initLinks() {
   }
 }
 
-/* ---------- Música ---------- */
+/* ---------- Música ----------
+   Devuelve una función que empieza la canción (la usa el sobre de bienvenida). */
 function initMusic() {
   const btn = document.getElementById('musicToggle');
   const audio = document.getElementById('song');
-  if (!btn || !audio || !CONFIG.songSrc) return;
+  if (!btn || !audio || !CONFIG.songSrc) return () => {};
 
   btn.hidden = false;
 
@@ -124,17 +130,55 @@ function initMusic() {
     btn.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproducir música');
   };
 
+  const play = () => {
+    if (!audio.src) audio.src = CONFIG.songSrc; // se carga solo al primer toque
+    audio.play().then(() => setState(true)).catch(() => setState(false));
+  };
+
   audio.addEventListener('error', () => { btn.hidden = true; });
 
   btn.addEventListener('click', () => {
-    if (!audio.src) audio.src = CONFIG.songSrc; // se carga solo al primer toque
     if (audio.paused) {
-      audio.play().then(() => setState(true)).catch(() => setState(false));
+      play();
     } else {
       audio.pause();
       setState(false);
     }
   });
+
+  return play;
+}
+
+/* ---------- Sobre de bienvenida ----------
+   Al tocar el corazón: suena la música (tiene que ser dentro del toque, si no
+   el celular la bloquea), se abre la solapa, sube la tarjeta y el sobre se
+   desvanece para mostrar la invitación. */
+function initEnvelope(playMusic) {
+  const envelope = document.getElementById('envelope');
+  const seal = document.getElementById('envelopeSeal');
+  const root = document.documentElement;
+  if (!envelope || !seal) {
+    root.classList.remove('has-envelope');
+    return;
+  }
+
+  // Tiempos alineados con las transiciones de styles.css
+  const revealAt = prefersReducedMotion ? 0 : 1900;
+  const removeAt = prefersReducedMotion ? 300 : 2700;
+
+  seal.addEventListener('click', () => {
+    playMusic();
+    envelope.classList.add('is-opening');
+    seal.disabled = true;
+
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      root.classList.remove('has-envelope');
+      document.dispatchEvent(new Event('invitacion-abierta'));
+    }, revealAt);
+
+    setTimeout(() => envelope.remove(), removeAt);
+  }, { once: true });
 }
 
 /* ---------- RSVP ---------- */
@@ -144,20 +188,12 @@ function initRsvp() {
 
   const nameInput = form.elements.nombre;
   const nameError = document.getElementById('nombre-error');
-  const guestsField = document.getElementById('invitadosField');
   const submit = document.getElementById('rsvpSubmit');
   const formError = document.getElementById('rsvpError');
   const result = document.getElementById('rsvpResult');
   const resultTitle = document.getElementById('rsvpResultTitle');
   const resultText = document.getElementById('rsvpResultText');
   const sectionTitle = document.getElementById('rsvp-titulo');
-
-  // Ocultar "número de personas" si no asistirá
-  form.querySelectorAll('input[name="asistencia"]').forEach((radio) => {
-    radio.addEventListener('change', () => {
-      guestsField.hidden = form.elements.asistencia.value === 'no';
-    });
-  });
 
   nameInput.addEventListener('input', () => {
     if (nameInput.value.trim()) {
@@ -228,5 +264,5 @@ function initRsvp() {
 initAnimations();
 initCountdown();
 initLinks();
-initMusic();
+initEnvelope(initMusic());
 initRsvp();

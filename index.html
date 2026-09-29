@@ -16,10 +16,61 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Caveat:wght@500;600;700&family=Sacramento&family=Yanone+Kaffeesatz:wght@400;500;600&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
 
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Sobre de bienvenida: al tocar el corazón suena la música y se abre la invitación.
+       Solo se muestra si hay JS (sin JS se ve la invitación directamente). -->
+  <div class="envelope" id="envelope">
+    <!-- Cielo de acuarela: nubes rosadas y grises con estrellitas -->
+    <div class="envelope__sky" aria-hidden="true">
+      <svg width="0" height="0" focusable="false">
+        <defs>
+          <radialGradient id="nubeRosa" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#fcf4f4"/><stop offset="0.55" stop-color="#f0dadb"/><stop offset="1" stop-color="#dfbfc1"/></radialGradient>
+          <radialGradient id="nubeGris" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff"/><stop offset="0.6" stop-color="#eeeef1"/><stop offset="1" stop-color="#cfcfd6"/></radialGradient>
+          <radialGradient id="estrella" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stop-color="#f8eaea"/><stop offset="1" stop-color="#dcb4b7"/></radialGradient>
+          <symbol id="nube" viewBox="0 0 200 110"><path d="M30 105C8 105 0 85 12 72 4 52 26 38 44 46 50 20 88 12 104 34 118 16 152 20 156 46 178 42 196 60 188 80 200 96 188 108 170 105Z"/></symbol>
+          <symbol id="estrellita" viewBox="0 0 24 24"><path d="M12 2.5l2.8 6 6.6.7-5 4.5 1.4 6.5L12 17l-5.8 3.2 1.4-6.5-5-4.5 6.6-.7Z" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+        </defs>
+      </svg>
+      <svg class="cloud cloud--1" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+      <svg class="cloud cloud--2" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+      <svg class="cloud cloud--3" fill="url(#nubeGris)"><use href="#nube"/></svg>
+      <svg class="cloud cloud--4" fill="url(#nubeGris)"><use href="#nube"/></svg>
+      <svg class="cloud cloud--5" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+      <svg class="cloud cloud--6" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+      <svg class="cloud cloud--7" fill="url(#nubeRosa)"><use href="#nube"/></svg>
+      <svg class="star star--1" fill="url(#estrella)" stroke="#dcb4b7"><use href="#estrellita"/></svg>
+      <svg class="star star--3" fill="url(#estrella)" stroke="#dcb4b7"><use href="#estrellita"/></svg>
+      <svg class="star star--4" fill="url(#estrella)" stroke="#dcb4b7"><use href="#estrellita"/></svg>
+      <svg class="star star--5" fill="url(#estrella)" stroke="#dcb4b7"><use href="#estrellita"/></svg>
+      <svg class="star star--6" fill="url(#estrella)" stroke="#dcb4b7"><use href="#estrellita"/></svg>
+    </div>
+
+    <div class="envelope__stage">
+      <p class="envelope__title">Tienes una invitación</p>
+      <div class="envelope__body">
+        <div class="envelope__back"></div>
+        <div class="envelope__letter" aria-hidden="true">
+          <span class="envelope__letter-caps">Baby Shower</span>
+          <span class="envelope__letter-name">Nihan</span>
+        </div>
+        <div class="envelope__front">
+          <!-- Dobleces del sobre -->
+          <svg class="envelope__folds" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <polyline points="0,100 50,55 100,100"/>
+          </svg>
+        </div>
+        <div class="envelope__flap"><div class="envelope__flap-shape"></div></div>
+        <button class="envelope__seal" type="button" id="envelopeSeal" aria-label="Abrir la invitación">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.7-10-9.3C.5 8 2 4.5 5.4 4c2.1-.3 4 .8 4.9 2.4C11.1 4.8 13 3.7 15.1 4c3.4.5 4.9 4 3.4 7.7C16 16.3 12 21 12 21z"/></svg>
+        </button>
+      </div>
+      <p class="envelope__hint">Toca el corazón para abrir</p>
+    </div>
+  </div>
 
   <!-- Botón de música (se muestra solo si hay canción configurada en script.js) -->
   <button class="music-toggle" type="button" id="musicToggle" aria-pressed="false" aria-label="Reproducir música" hidden>
@@ -43,7 +94,6 @@
         <p class="hero__script">Falta poquito para conocer a</p>
         <h1 class="hero__title">Nihan</h1>
         <p class="hero__lead">Estamos esperando con mucho amor a una princesita muy especial y queremos celebrarlo contigo.</p>
-        <a class="btn btn--ghost btn--sm" href="#rsvp">Confirmar asistencia</a>
         <a class="hero__scroll" href="#foto" aria-label="Ver más">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </a>
@@ -56,7 +106,7 @@
       <img class="flower flower--sm deco--bl" src="assets/illustrations/flor-1.png" alt="" aria-hidden="true">
       <div class="container">
         <figure class="photo" data-animate="scale">
-          <img src="assets/foto-padres.svg" alt="Foto de los futuros papás" width="600" height="750" loading="lazy" decoding="async">
+          <img src="assets/foto-padres.jpg" alt="Johana y Jhon en la playa, esperando a Nihan" width="800" height="800" loading="lazy" decoding="async">
           <span class="photo__badge" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.5 8 2 4.5 5.4 4c2.1-.3 4 .8 4.9 2.4C11.1 4.8 13 3.7 15.1 4c3.4.5 4.9 4 3.4 7.7C16 16.3 12 21 12 21z"/></svg>
           </span>
@@ -150,18 +200,6 @@
                 <label class="choice"><input type="radio" name="asistencia" value="no"><span>No podré ir</span></label>
               </div>
             </fieldset>
-
-            <div class="field" id="invitadosField">
-              <label for="invitados">Número de personas (contándote)</label>
-              <select id="invitados" name="invitados">
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="mensaje">Mensaje para los papás <span class="optional">(opcional)</span></label>
-              <textarea id="mensaje" name="mensaje" rows="3"></textarea>
-            </div>
 
             <!-- Honeypot anti-spam: los humanos no lo ven -->
             <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">

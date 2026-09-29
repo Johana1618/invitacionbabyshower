@@ -41,7 +41,7 @@ Con **Formspree** (gratis):
 1. Crea un formulario en <https://formspree.io> y copia su URL (`https://formspree.io/f/xxxxxxx`).
 2. En `script.js`: `rsvpEndpoint: 'https://formspree.io/f/xxxxxxx'`.
 
-Cualquier servicio que acepte `POST` con `FormData` sirve igual (Getform, Basin, Google Apps Script…). Los campos que se envían son `nombre`, `asistencia` (`si`/`no`), `invitados` y `mensaje`.
+Cualquier servicio que acepte `POST` con `FormData` sirve igual (Getform, Basin, Google Apps Script…). Los campos que se envían son `nombre` y `asistencia` (`si`/`no`).
 
 ## Desplegar en Vercel
 

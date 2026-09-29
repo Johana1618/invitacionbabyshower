@@ -224,13 +224,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .btn--block { width: 100%; }
 
-.btn--sm {
-  min-height: var(--tap);
-  padding: 0.3rem 1.15rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  box-shadow: none;
-}
 
 /* ---------- 1. Portada ---------- */
 .hero {
@@ -576,7 +569,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .field legend { margin-bottom: 0.25rem; }
 
-.optional { font-weight: 500; color: var(--ink-soft); }
 
 .field input[type="text"],
 .field select,
@@ -784,6 +776,244 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .music-toggle .icon-pause { display: none; }
 .music-toggle[aria-pressed="true"] .icon-play { display: none; }
 .music-toggle[aria-pressed="true"] .icon-pause { display: block; }
+
+/* ---------- Sobre de bienvenida ---------- */
+.envelope { display: none; }
+
+.js .envelope {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: max(var(--s-3), env(safe-area-inset-top)) var(--gutter) max(var(--s-3), env(safe-area-inset-bottom));
+  background: #fff;
+  transition: opacity 700ms ease 1800ms, visibility 0s linear 2500ms;
+}
+
+/* Mientras el sobre está cerrado: sin scroll y el cochecito espera para entrar */
+.has-envelope body { overflow: hidden; }
+.has-envelope .hero__stroller { animation-play-state: paused; }
+
+/* Nubes y estrellas */
+.envelope__sky { position: absolute; inset: 0; pointer-events: none; }
+.envelope__sky svg { position: absolute; overflow: visible; }
+
+.cloud {
+  aspect-ratio: 200 / 110;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(190, 145, 150, 0.16));
+}
+.cloud--1 { width: 48%; max-width: 15rem; top: -3%; left: -10%; }
+.cloud--2 { width: 42%; max-width: 13rem; top: -2%; right: -12%; }
+.cloud--3 { width: 38%; max-width: 12rem; top: 30%; left: -16%; }
+.cloud--4 { width: 40%; max-width: 12.5rem; top: 20%; right: -14%; }
+.cloud--5 { width: 30%; max-width: 9rem; top: 27%; right: -12%; }
+.cloud--6 { width: 44%; max-width: 14rem; bottom: -3%; left: -14%; }
+.cloud--7 { width: 42%; max-width: 13rem; bottom: -2%; right: -12%; }
+
+.star { width: 2.4rem; height: 2.4rem; }
+.star--1 { top: 18%; left: 10%; }
+.star--3 { top: 18%; right: 12%; }
+.star--4 { top: 34%; left: 6%; width: 1.8rem; height: 1.8rem; }
+.star--5 { bottom: 20%; left: 14%; }
+.star--6 { bottom: 12%; right: 38%; width: 2.1rem; height: 2.1rem; }
+
+.envelope__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  width: 100%;
+  text-align: center;
+}
+
+.envelope__title {
+  font-family: var(--font-script);
+  font-size: clamp(1.9rem, 1.6rem + 1.5vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #a8737a; /* palo rosa profundo, legible sobre blanco */
+}
+
+.envelope__hint {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+.envelope__body {
+  position: relative;
+  width: min(100%, 23rem);
+  aspect-ratio: 10 / 6.6;
+  perspective: 60rem;
+}
+
+/* Interior del sobre (se ve cuando se abre la solapa) */
+.envelope__back {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 0.25rem;
+  background: #e6c3c5;
+  box-shadow: 0 0.75rem 1.75rem rgba(190, 145, 150, 0.22);
+}
+
+/* Tarjeta que sube al abrir */
+.envelope__letter {
+  position: absolute;
+  z-index: 1;
+  left: 7%;
+  right: 7%;
+  top: 6%;
+  height: 86%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 8%;
+  border-radius: 0.3rem;
+  background: var(--surface);
+  box-shadow: 0 0.25rem 0.75rem rgba(92, 79, 88, 0.12);
+}
+
+.envelope__letter-caps {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-strong);
+}
+
+.envelope__letter-name {
+  font-family: var(--font-name);
+  font-size: clamp(2.4rem, 2rem + 3vw, 3rem);
+  line-height: 1.1;
+  color: var(--accent-strong);
+}
+
+/* Bolsillo delantero en forma de V, rosado claro y plano */
+.envelope__front {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 0 0 0.25rem 0.25rem;
+  background: #f3dedf;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Dobleces: línea rosada más oscura con un brillo blanco al lado */
+.envelope__folds {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.envelope__folds polyline {
+  fill: none;
+  stroke: #d8b0b3;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 1.5px 0 rgba(255, 255, 255, 0.7));
+}
+
+/* Solapa: gira hacia arriba al abrir y queda detrás de la tarjeta */
+.envelope__flap {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 55%;
+  transform-origin: 50% 0;
+  /* Borde más oscuro y brillo, como el doblez de la solapa */
+  filter: drop-shadow(0 1.5px 0 #d8b0b3) drop-shadow(0 2.5px 0 rgba(255, 255, 255, 0.7));
+  transition: transform 650ms var(--ease-out) 250ms, z-index 0s linear 550ms;
+}
+
+.envelope__flap-shape {
+  width: 100%;
+  height: 100%;
+  background: #efd5d6;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Sello: un corazón rosado (es el botón) */
+.envelope__seal {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 55%;
+  display: grid;
+  place-items: center;
+  width: 4.25rem;
+  height: 4.25rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 300ms var(--ease-out), opacity 300ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope__seal svg {
+  width: 100%;
+  height: 100%;
+  fill: #d4a0a6;
+  filter: drop-shadow(0 3px 4px rgba(170, 115, 122, 0.3));
+}
+
+.envelope__seal:focus-visible { outline-offset: 2px; border-radius: 50%; }
+
+/* Abriendo: el sello se va, la solapa gira, la tarjeta sube y todo se desvanece */
+.envelope.is-opening { opacity: 0; visibility: hidden; }
+.envelope.is-opening .envelope__seal { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+.envelope.is-opening .envelope__flap { z-index: 0; transform: rotateX(180deg); }
+.envelope.is-opening .envelope__letter { transform: translateY(-42%); }
+/* El título se desvanece para que la solapa abierta no lo tape */
+.envelope.is-opening .envelope__hint,
+.envelope.is-opening .envelope__title { opacity: 0; }
+
+.envelope__letter { transition: transform 750ms var(--ease-out) 850ms; }
+.envelope__hint,
+.envelope__title { transition: opacity 300ms ease; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Latido suave del corazón para invitar a tocarlo */
+  .envelope__seal { animation: sealBeat 1.8s ease-in-out infinite; }
+  .envelope.is-opening .envelope__seal { animation: none; }
+
+  /* Nubes que flotan despacio y estrellas que titilan */
+  .cloud { animation: cloudDrift 9s ease-in-out infinite alternate; }
+  .cloud--2, .cloud--5 { animation-duration: 11s; animation-delay: -3s; }
+  .cloud--3, .cloud--6 { animation-duration: 10s; animation-delay: -6s; }
+  .star { animation: starTwinkle 3s ease-in-out infinite; }
+  .star--3 { animation-delay: -1.6s; }
+  .star--4 { animation-delay: -2.2s; }
+  .star--5 { animation-delay: -1.1s; }
+  .star--6 { animation-delay: -2.6s; }
+}
+
+@keyframes sealBeat {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  15% { transform: translate(-50%, -50%) scale(1.1); }
+  30% { transform: translate(-50%, -50%) scale(1); }
+  45% { transform: translate(-50%, -50%) scale(1.07); }
+}
+
+@keyframes cloudDrift {
+  from { transform: translateX(-0.6rem); }
+  to { transform: translateX(0.6rem); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(0.82) rotate(12deg); opacity: 0.7; }
+}
 
 /* ==========================================================================
    Animaciones (solo si hay JS y el usuario no pidió movimiento reducido)
