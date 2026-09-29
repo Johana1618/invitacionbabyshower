@@ -275,7 +275,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: 3.1rem;
   transform: translateX(var(--rest));
 }
-.flyer img { width: 100%; }
+.flyer img { width: 100%; height: auto; }
 /* La azul, pasada a morado */
 .flyer--purple img { filter: hue-rotate(70deg) saturate(1.3); }
 .flyer--1 { top: 30%; --rest: 6vw; }
