@@ -53,19 +53,23 @@
       <p class="envelope__title">Tienes una invitación</p>
       <div class="envelope__body">
         <div class="envelope__back"></div>
-        <div class="envelope__letter" aria-hidden="true">
-          <span class="envelope__letter-caps">Baby Shower</span>
-          <span class="envelope__letter-name">Nihan</span>
-        </div>
+        <!-- Humo rosado y destellos que salen al abrirlo (los crea script.js) -->
+        <div class="envelope__smoke" id="envelopeSmoke" aria-hidden="true"></div>
+        <div class="envelope__smoke envelope__smoke--sparkles" id="envelopeSparkles" aria-hidden="true"></div>
         <div class="envelope__front">
-          <!-- Dobleces del sobre -->
+          <!-- Bolsillo en V y dobleces del sobre -->
           <svg class="envelope__folds" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <polygon points="0,0 50,55 100,0 100,100 0,100"/>
             <polyline points="0,100 50,55 100,100"/>
           </svg>
         </div>
         <div class="envelope__flap"><div class="envelope__flap-shape"></div></div>
         <button class="envelope__seal" type="button" id="envelopeSeal" aria-label="Abrir la invitación">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.7-10-9.3C.5 8 2 4.5 5.4 4c2.1-.3 4 .8 4.9 2.4C11.1 4.8 13 3.7 15.1 4c3.4.5 4.9 4 3.4 7.7C16 16.3 12 21 12 21z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <!-- Brillo blanco -->
+            <path class="envelope__seal-shine" d="M17.4 5.5c1.6.9 1.9 3.3.4 5.6M15.9 13.1l-.8.8"/>
+          </svg>
         </button>
       </div>
       <p class="envelope__hint">Toca el corazón para abrir</p>
@@ -84,13 +88,13 @@
     <!-- 1. PORTADA -->
     <header class="hero section" id="inicio">
       <div class="hero__decor" aria-hidden="true">
-        <!-- Cigüeña: entra volando desde la izquierda y luego se queda aleteando suave -->
-        <img class="hero__stork" src="assets/illustrations/ciguena.png" alt="">
         <img class="hero__sun" src="assets/illustrations/sol.png" alt="">
         <img class="butterfly butterfly--1" src="assets/illustrations/mariposa-1.png" alt="">
       </div>
       <div class="container hero__inner" data-animate="hero">
         <p class="eyebrow eyebrow--caps">Baby Shower</p>
+        <!-- Cigüeña: entra volando desde la izquierda y luego se queda aleteando suave -->
+        <img class="hero__stork" src="assets/illustrations/ciguena.png" alt="">
         <p class="hero__script">Falta poquito para conocer a</p>
         <h1 class="hero__title">Nihan</h1>
         <p class="hero__lead">Estamos esperando con mucho amor a una princesita muy especial y queremos celebrarlo contigo.</p>

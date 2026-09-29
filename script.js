@@ -163,8 +163,10 @@ function initEnvelope(playMusic) {
   }
 
   // Tiempos alineados con las transiciones de styles.css
-  const revealAt = prefersReducedMotion ? 0 : 1900;
-  const removeAt = prefersReducedMotion ? 300 : 2700;
+  const revealAt = prefersReducedMotion ? 0 : 2700;
+  const removeAt = prefersReducedMotion ? 300 : 3500;
+
+  if (!prefersReducedMotion) buildSmoke();
 
   seal.addEventListener('click', () => {
     playMusic();
@@ -179,6 +181,84 @@ function initEnvelope(playMusic) {
 
     setTimeout(() => envelope.remove(), removeAt);
   }, { once: true });
+}
+
+/* Humo del sobre: nubecitas difuminadas que rebosan el bolsillo y suben en
+   un remolino (espiral que se abre hacia arriba), con destellos y
+   estrellitas repartidos por el remolino. Posiciones en rem desde la boca
+   del sobre. */
+function buildSmoke() {
+  const smoke = document.getElementById('envelopeSmoke');
+  const sparkles = document.getElementById('envelopeSparkles');
+  if (!smoke || !sparkles) return;
+
+  // Aleatorio fijo, para que el remolino se vea igual cada vez
+  let seed = 7;
+  const rand = () => {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+
+  const add = (parent, className, vars) => {
+    const el = document.createElement('span');
+    el.className = className;
+    Object.entries(vars).forEach(([k, v]) => el.style.setProperty(`--${k}`, v));
+    parent.appendChild(el);
+    return el;
+  };
+
+  // Espiral: t = 0 en la boca del sobre, t = 1 arriba. Da casi dos vueltas,
+  // se va abriendo y subiendo; aplanada para que parezca un torbellino
+  const onSpiral = (t, jitter = 0) => {
+    const a = ((90 + t * 620) * Math.PI) / 180;
+    const r = 1.5 + t * 7 + jitter;
+    return {
+      x: Math.cos(a) * r,
+      y: -1 - t * 11 + Math.sin(a) * r * 0.45,
+    };
+  };
+
+  // Nubes que rebosan el bolsillo
+  for (let i = 0; i < 7; i++) {
+    add(smoke, 'smoke-puff', {
+      x: `${-7.5 + i * 2.5}rem`,
+      y: `${1 + rand() * 1.5}rem`,
+      s: (2.2 + rand() * 0.8).toFixed(2),
+      d: `${Math.round(rand() * 250)}ms`,
+    });
+  }
+
+  // Nubes del remolino, de abajo hacia arriba
+  const steps = 32;
+  for (let i = 1; i <= steps; i++) {
+    const t = i / steps;
+    const count = 1 + Math.round(rand());
+    for (let k = 0; k < count; k++) {
+      const p = onSpiral(t + (rand() - 0.5) * 0.02, (rand() - 0.5) * 1.6);
+      add(smoke, 'smoke-puff', {
+        x: `${p.x.toFixed(2)}rem`,
+        y: `${p.y.toFixed(2)}rem`,
+        s: (1.2 + t * 0.8 + rand() * 0.6).toFixed(2),
+        d: `${Math.round(150 + t * 900 + rand() * 100)}ms`,
+      });
+    }
+  }
+
+  // Destellos y estrellitas por el remolino y sobre la boca del sobre
+  for (let i = 0; i < 60; i++) {
+    const t = rand();
+    const p = i < 50
+      ? onSpiral(t, (rand() - 0.5) * 3)
+      : { x: (rand() - 0.5) * 14, y: rand() * 2 - 1 };
+    const isStar = i % 3 === 0;
+    const el = add(sparkles, isStar ? 'smoke-star' : 'smoke-sparkle', {
+      x: `${p.x.toFixed(2)}rem`,
+      y: `${p.y.toFixed(2)}rem`,
+      z: `${((isStar ? 1.1 : 0.7) + rand() * (isStar ? 0.7 : 1.1)).toFixed(2)}rem`,
+      d: `${Math.round(t * 900 + rand() * 300)}ms`,
+    });
+    if (isStar) el.textContent = '★';
+  }
 }
 
 /* ---------- RSVP ---------- */

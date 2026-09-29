@@ -225,6 +225,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- 1. Portada ---------- */
 .hero {
   position: relative;
+  overflow-x: clip; /* la cigüeña entra desde fuera de la pantalla */
   display: flex;
   align-items: center;
   min-height: 80vh;
@@ -305,11 +306,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 #foto .deco-butterfly:not(.deco-butterfly--sm) { width: 3.25rem; }
 #rsvp .deco-butterfly:not(.deco-butterfly--sm) { width: 2.25rem; }
 
-/* PNG con fondo transparente; multiply suaviza los restos claros del borde */
+/* PNG con fondo transparente; multiply suaviza los restos claros del borde.
+   Va debajo del título "Baby Shower"; left + translate la centran igual que
+   hacen las animaciones de entrada y vuelo */
 .hero__stork {
-  position: absolute;
-  top: 7%;
+  position: relative;
+  align-self: flex-start;
   left: 50%;
+  margin: var(--s-2) 0;
   width: clamp(9rem, 34vw, 12rem);
   height: auto;
   mix-blend-mode: multiply;
@@ -351,7 +355,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   flex-direction: column;
   align-items: center;
   gap: var(--s-1);
-  margin-top: clamp(7rem, 23vw, 10rem);
 }
 
 .hero__wreath {
@@ -797,7 +800,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   overflow: hidden;
   padding: max(var(--s-3), env(safe-area-inset-top)) var(--gutter) max(var(--s-3), env(safe-area-inset-bottom));
   background: #fff;
-  transition: opacity 700ms ease 1800ms, visibility 0s linear 2500ms;
+  transition: opacity 700ms ease 2600ms, visibility 0s linear 3300ms;
 }
 
 /* Mientras el sobre está cerrado: sin scroll y la cigüeña espera para entrar */
@@ -816,8 +819,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .cloud--1 { width: 48%; max-width: 15rem; top: -3%; left: -10%; }
 .cloud--2 { width: 42%; max-width: 13rem; top: -2%; right: -12%; }
-.cloud--3 { width: 38%; max-width: 12rem; top: 30%; left: -16%; }
-.cloud--4 { width: 40%; max-width: 12.5rem; top: 20%; right: -14%; }
+.cloud--3 { width: 38%; max-width: 12rem; top: 10%; left: 30%; }
+.cloud--4 { width: 40%; max-width: 12.5rem; bottom: 16%; right: 8%; }
 .cloud--5 { width: 30%; max-width: 9rem; top: 27%; right: -12%; }
 .cloud--6 { width: 44%; max-width: 14rem; bottom: -3%; left: -14%; }
 .cloud--7 { width: 42%; max-width: 13rem; bottom: -2%; right: -12%; }
@@ -870,47 +873,75 @@ button, input, select, textarea { font: inherit; color: inherit; }
   box-shadow: 0 0.75rem 1.75rem rgba(214, 140, 160, 0.25);
 }
 
-/* Tarjeta que sube al abrir */
-.envelope__letter {
+/* Humo que sale por la boca del sobre al abrirlo: nubecitas rosadas que
+   rebosan el bolsillo y suben en remolino por ambos lados, con destellos.
+   El humo va detrás del bolsillo (como si saliera de adentro); los
+   destellos van encima de todo. Las bolitas las crea script.js */
+.envelope__smoke {
   position: absolute;
   z-index: 1;
-  left: 7%;
-  right: 7%;
-  top: 6%;
-  height: 86%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 8%;
-  border-radius: 0.3rem;
-  background: var(--surface);
-  box-shadow: 0 0.25rem 0.75rem rgba(92, 79, 88, 0.12);
+  left: 50%;
+  top: 12%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.envelope__smoke--sparkles { z-index: 5; }
+
+.smoke-puff {
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: -1.75rem 0 0 -1.75rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, #fff 0%, #fde8ed 28%, rgba(242, 188, 203, 0.8) 50%, rgba(242, 188, 203, 0.35) 62%, rgba(242, 188, 203, 0) 72%);
+  filter: blur(6px);
+  opacity: 0;
 }
 
-.envelope__letter-caps {
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-strong);
+/* Destello de 4 puntas: brillo redondo + cruz de luz */
+.smoke-sparkle {
+  position: absolute;
+  width: var(--z);
+  height: var(--z);
+  margin: calc(var(--z) / -2) 0 0 calc(var(--z) / -2);
+  background: radial-gradient(circle, #fff 0 14%, rgba(255, 246, 225, 0.85) 22%, rgba(255, 246, 225, 0) 55%);
+  filter: drop-shadow(0 0 3px #fff);
+  opacity: 0;
+  transform: translate(var(--x), var(--y));
+}
+.smoke-sparkle::before,
+.smoke-sparkle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  margin-left: -1px;
+  background: linear-gradient(transparent, #fff, transparent);
+}
+.smoke-sparkle::after { transform: rotate(90deg); }
+
+/* Estrellita de 5 puntas, crema brillante */
+.smoke-star {
+  position: absolute;
+  margin: calc(var(--z) / -2) 0 0 calc(var(--z) / -2);
+  font-size: var(--z);
+  line-height: 1;
+  color: #fffbea;
+  text-shadow: 0 0 2px #fff, 0 0 5px #ffd98a, 0 0 10px rgba(255, 217, 138, 0.8);
+  opacity: 0;
+  transform: translate(var(--x), var(--y));
 }
 
-.envelope__letter-name {
-  font-family: var(--font-name);
-  font-size: clamp(2.4rem, 2rem + 3vw, 3rem);
-  line-height: 1.1;
-  color: var(--accent-strong);
-}
-
-/* Bolsillo delantero en forma de V, rosado claro y plano */
+/* Bolsillo delantero en forma de V, rosado claro y plano. Se dibuja con el
+   SVG y no con clip-path: al animarse la solapa y la tarjeta, el navegador a
+   veces pierde el recorte y el sobre parecía cerrarse y volver a abrirse */
 .envelope__front {
   position: absolute;
   inset: 0;
   z-index: 2;
-  border-radius: 0 0 0.25rem 0.25rem;
-  background: #f5d0d6;
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
 }
 
 /* Dobleces: línea rosada más oscura con un brillo blanco al lado */
@@ -920,6 +951,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: 100%;
   height: 100%;
 }
+.envelope__folds polygon { fill: #f5d0d6; }
 .envelope__folds polyline {
   fill: none;
   stroke: #e3a7b3;
@@ -957,8 +989,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   top: 55%;
   display: grid;
   place-items: center;
-  width: 4.25rem;
-  height: 4.25rem;
+  width: 6.5rem;
+  height: 6.5rem;
   padding: 0;
   border: 0;
   background: none;
@@ -971,22 +1003,33 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .envelope__seal svg {
   width: 100%;
   height: 100%;
-  fill: #e592a4;
+  fill: #f4a3b4;
   filter: drop-shadow(0 3px 4px rgba(200, 110, 135, 0.32));
+}
+.envelope__seal-shine {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.3;
+  stroke-linecap: round;
 }
 
 .envelope__seal:focus-visible { outline-offset: 2px; border-radius: 50%; }
 
-/* Abriendo: el sello se va, la solapa gira, la tarjeta sube y todo se desvanece */
+/* Abriendo: el sello se va, la solapa gira, sale el humo y todo se desvanece */
 .envelope.is-opening { opacity: 0; visibility: hidden; }
 .envelope.is-opening .envelope__seal { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
 .envelope.is-opening .envelope__flap { z-index: 0; transform: rotateX(180deg); }
-.envelope.is-opening .envelope__letter { transform: translateY(-42%); }
+.envelope.is-opening .smoke-puff {
+  animation: smokePuff 1100ms var(--ease-out) calc(600ms + var(--d)) forwards;
+}
+.envelope.is-opening .smoke-sparkle,
+.envelope.is-opening .smoke-star {
+  animation: sparkle 650ms ease-in-out calc(900ms + var(--d)) infinite alternate both;
+}
 /* El título se desvanece para que la solapa abierta no lo tape */
 .envelope.is-opening .envelope__hint,
 .envelope.is-opening .envelope__title { opacity: 0; }
 
-.envelope__letter { transition: transform 750ms var(--ease-out) 850ms; }
 .envelope__hint,
 .envelope__title { transition: opacity 300ms ease; }
 
@@ -1011,6 +1054,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
   15% { transform: translate(-50%, -50%) scale(1.1); }
   30% { transform: translate(-50%, -50%) scale(1); }
   45% { transform: translate(-50%, -50%) scale(1.07); }
+}
+
+/* Sale de la boca del sobre y sube a su lugar en el remolino. Se queda
+   visible al final: el sobre entero se desvanece encima */
+@keyframes smokePuff {
+  0% { opacity: 0; transform: translate(0, 1.5rem) scale(0.3); }
+  30% { opacity: 0.9; }
+  100% { opacity: 0.9; transform: translate(var(--x), var(--y)) scale(var(--s)); }
+}
+
+@keyframes sparkle {
+  from { opacity: 0; transform: translate(var(--x), var(--y)) scale(0.4); }
+  to { opacity: 1; transform: translate(var(--x), var(--y)) scale(1); }
 }
 
 @keyframes cloudDrift {
