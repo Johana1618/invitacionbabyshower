@@ -991,7 +991,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   flex-direction: column;
   align-items: center;
   gap: var(--s-1);
-  margin-top: -6rem;
+  margin-top: -2.5rem;
   padding: 0 var(--gutter) max(var(--s-5), env(safe-area-inset-bottom));
   text-align: center;
   font-family: var(--font-script);
