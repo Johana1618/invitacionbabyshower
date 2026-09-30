@@ -995,7 +995,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding: 0 var(--gutter) max(var(--s-5), env(safe-area-inset-bottom));
   text-align: center;
   font-family: var(--font-script);
-  font-size: clamp(1.9rem, 1.6rem + 1.5vw, 2.3rem);
+  font-size: clamp(1.65rem, 1.45rem + 1vw, 2rem);
   font-weight: 600;
   line-height: 1.2;
   color: var(--accent-strong);
