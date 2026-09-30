@@ -165,7 +165,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .hero .eyebrow--caps { font-size: clamp(1.4rem, 1.15rem + 1.2vw, 1.8rem); }
 .section--pink .eyebrow { color: var(--accent-strong); }
-#mapa .eyebrow { color: var(--gold); } /* amarillo, igual que "Baby Shower" */
+#mapa .eyebrow { color: var(--gold); font-size: 1.6rem; } /* amarillo como "Baby Shower", del tamaño de "Faltan" */
 
 .center {
   display: flex;
