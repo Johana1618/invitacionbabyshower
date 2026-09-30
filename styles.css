@@ -1045,7 +1045,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   overflow: hidden;
   padding: max(var(--s-3), env(safe-area-inset-top)) var(--gutter) max(var(--s-3), env(safe-area-inset-bottom));
   background: #fdf6f6; /* rosado muy claro */
-  transition: opacity 700ms ease 2600ms, visibility 0s linear 3300ms;
+  transition: opacity 500ms ease 1500ms, visibility 0s linear 2000ms;
 }
 
 /* Mientras el sobre está cerrado: sin scroll y la cigüeña espera para entrar */
@@ -1230,7 +1230,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   overflow: hidden;
   /* Borde más oscuro y brillo, como el doblez de la solapa */
   filter: drop-shadow(0 1.5px 0 #e3a7b3) drop-shadow(0 2.5px 0 rgba(255, 255, 255, 0.7));
-  transition: transform 650ms var(--ease-out) 250ms, z-index 0s linear 550ms;
+  transition: transform 450ms var(--ease-out) 100ms, z-index 0s linear 320ms;
 }
 
 .envelope__flap-shape {
@@ -1279,11 +1279,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .envelope.is-opening .envelope__seal { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
 .envelope.is-opening .envelope__flap { z-index: 0; transform: rotateX(180deg); }
 .envelope.is-opening .smoke-puff {
-  animation: smokePuff 1100ms var(--ease-out) calc(600ms + var(--d)) forwards;
+  animation: smokePuff 750ms var(--ease-out) calc(300ms + var(--d) * 0.5) forwards;
 }
 .envelope.is-opening .smoke-sparkle,
 .envelope.is-opening .smoke-star {
-  animation: sparkle 650ms ease-in-out calc(900ms + var(--d)) infinite alternate both;
+  animation: sparkle 450ms ease-in-out calc(450ms + var(--d) * 0.5) infinite alternate both;
 }
 /* El título se desvanece para que la solapa abierta no lo tape */
 .envelope.is-opening .envelope__hint,

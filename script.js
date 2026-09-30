@@ -175,8 +175,8 @@ function initEnvelope(playMusic) {
   }
 
   // Tiempos alineados con las transiciones de styles.css
-  const revealAt = prefersReducedMotion ? 0 : 2700;
-  const removeAt = prefersReducedMotion ? 300 : 3500;
+  const revealAt = prefersReducedMotion ? 0 : 1600;
+  const removeAt = prefersReducedMotion ? 300 : 2100;
 
   if (!prefersReducedMotion) buildSmoke();
 
