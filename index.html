@@ -18,7 +18,7 @@
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
   <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <!-- ?v=: cambiarlo en cada subida para que los celulares no usen el CSS/JS viejo guardado -->
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -101,22 +101,22 @@
         <svg class="hero-cloud hero-cloud--4" fill="url(#nubeGris)"><use href="#nube"/></svg>
         <svg class="hero-cloud hero-cloud--5" fill="url(#nubeRosa)"><use href="#nube"/></svg>
         <!-- Corazoncitos (rellenos y de contorno) y puntitos dorados -->
-        <svg class="hero-heart" style="top: 8%; right: 32%; --z: 0.7rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart hero-heart--line" style="top: 15%; right: 6%; --z: 0.95rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart hero-heart--line" style="top: 21%; left: 5%; --z: 0.85rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart" style="top: 34%; right: 7%; --z: 0.75rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart" style="top: 44%; left: 9%; --z: 0.8rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart hero-heart--line" style="top: 60%; right: 5%; --z: 0.95rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart hero-heart--line" style="top: 79%; left: 8%; --z: 0.85rem"><use href="#corazon"/></svg>
-        <svg class="hero-heart" style="top: 88%; right: 20%; --z: 0.7rem"><use href="#corazon"/></svg>
-        <span class="hero-dot" style="top: 13%; left: 22%"></span>
-        <span class="hero-dot" style="top: 25%; right: 20%"></span>
-        <span class="hero-dot" style="top: 38%; left: 14%"></span>
-        <span class="hero-dot" style="top: 50%; right: 12%"></span>
-        <span class="hero-dot" style="top: 63%; left: 20%"></span>
-        <span class="hero-dot" style="top: 74%; right: 4%"></span>
-        <span class="hero-dot" style="top: 86%; left: 36%"></span>
-        <span class="hero-dot" style="top: 93%; right: 40%"></span>
+        <svg class="deco-heart" style="top: 8%; right: 32%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 15%; right: 6%; --z: 0.95rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 21%; left: 5%; --z: 0.85rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart" style="top: 34%; right: 7%; --z: 0.75rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart" style="top: 44%; left: 9%; --z: 0.8rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 60%; right: 5%; --z: 0.95rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 79%; left: 8%; --z: 0.85rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart" style="top: 88%; right: 20%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <span class="deco-dot" style="top: 13%; left: 22%"></span>
+        <span class="deco-dot" style="top: 25%; right: 20%"></span>
+        <span class="deco-dot" style="top: 38%; left: 14%"></span>
+        <span class="deco-dot" style="top: 50%; right: 12%"></span>
+        <span class="deco-dot" style="top: 63%; left: 20%"></span>
+        <span class="deco-dot" style="top: 74%; right: 4%"></span>
+        <span class="deco-dot" style="top: 86%; left: 36%"></span>
+        <span class="deco-dot" style="top: 93%; right: 40%"></span>
         <!-- Mariposas que cruzan la portada volando -->
         <span class="flyer flyer--1"><img src="assets/illustrations/mariposa.png" width="48" height="40" alt=""></span>
         <span class="flyer flyer--2"><img src="assets/illustrations/mariposa-1.png" width="48" height="40" alt=""></span>
@@ -137,31 +137,124 @@
         <h1 class="hero__title">Nihan</h1>
         <p class="hero__lead">Estamos esperando con mucho amor a una princesita muy especial y queremos celebrarlo contigo.</p>
         <!-- Separador: línea, corazón, línea -->
-        <div class="hero__divider" aria-hidden="true">
+        <div class="divider" aria-hidden="true">
           <svg><use href="#corazon"/></svg>
         </div>
       </div>
     </header>
 
-    <!-- 2. FOTO DE PADRES / ECOGRAFÍA -->
-    <section class="section section--mint" id="foto" aria-labelledby="foto-titulo">
-      <img class="flower flower--sm deco--bl" src="assets/illustrations/flor-1.png" alt="" aria-hidden="true">
+    <!-- 2. ZAPATITOS Y NOMBRES DE LOS PAPÁS -->
+    <section class="section section--pink" id="foto" aria-labelledby="foto-titulo">
+      <div class="section__decor" aria-hidden="true">
+        <!-- Montañitas rosadas difuminadas al final de la sección -->
+        <svg class="hills" viewBox="0 0 400 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="colinaAtras" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7d4dd"/><stop offset="1" stop-color="#fffdf9"/></linearGradient>
+            <linearGradient id="colinaFrente" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2bfcc"/><stop offset="0.85" stop-color="#fffdf9"/></linearGradient>
+          </defs>
+          <path d="M0 50C60 20 120 22 180 42S300 18 400 36V100H0Z" fill="url(#colinaAtras)"/>
+          <path d="M0 72C70 44 140 50 210 66S340 52 400 62V100H0Z" fill="url(#colinaFrente)"/>
+        </svg>
+        <svg class="deco-cloud" style="top: 1%; left: -7%; width: 34%"><use href="#nube"/></svg>
+        <svg class="deco-cloud" style="top: 17%; right: -6%; width: 28%"><use href="#nube"/></svg>
+        <svg class="deco-cloud" style="bottom: 2%; left: -8%; width: 36%"><use href="#nube"/></svg>
+        <svg class="deco-cloud" style="bottom: 10%; right: -7%; width: 30%"><use href="#nube"/></svg>
+        <img class="deco-float" style="top: 5%; right: 16%; width: 2.8rem" src="assets/illustrations/mariposa-1.png" alt="">
+        <img class="deco-float" style="top: 84%; left: 4%; width: 2.5rem; animation-delay: -2s" src="assets/illustrations/mariposa.png" alt="">
+        <svg class="deco-trail" viewBox="0 0 120 60" style="top: 8%; right: -2%; width: 5rem"><path d="M2 40C20 44 34 40 44 30 50 22 46 12 40 12 34 12 32 22 40 26 56 34 90 26 118 34"/></svg>
+        <svg class="deco-trail" viewBox="0 0 120 60" style="top: 79%; left: 14%; width: 5.5rem"><path d="M2 20C18 30 30 40 44 38 54 36 56 24 50 20 44 16 38 24 44 32 56 46 90 48 118 42"/></svg>
+        <img class="deco-float" style="top: 28%; left: 5%; width: 2rem; animation-delay: -1s" src="assets/illustrations/flor-1.png" alt="">
+        <img class="deco-float" style="top: 47%; right: 4%; width: 2.1rem; animation-delay: -3s" src="assets/illustrations/flor-2.png" alt="">
+        <img class="deco-float" style="bottom: 4%; right: 7%; width: 2.3rem; animation-delay: -4s" src="assets/illustrations/flor-2.png" alt="">
+        <svg class="deco-heart" style="top: 13%; left: 14%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 25%; right: 9%; --z: 0.9rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 40%; left: 6%; --z: 0.85rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart" style="top: 39%; right: 7%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="top: 60%; left: 7%; --z: 0.9rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart" style="top: 82%; right: 26%; --z: 0.7rem"><use href="#corazon"/></svg>
+        <svg class="deco-heart deco-heart--line" style="bottom: 7%; left: 38%; --z: 0.8rem"><use href="#corazon"/></svg>
+        <span class="deco-dot deco-dot--pink" style="top: 9%; left: 30%"></span>
+        <span class="deco-dot" style="top: 20%; left: 10%"></span>
+        <span class="deco-dot deco-dot--pink" style="top: 35%; right: 12%"></span>
+        <span class="deco-dot" style="top: 55%; left: 13%"></span>
+        <span class="deco-dot deco-dot--pink" style="top: 64%; right: 14%"></span>
+        <span class="deco-dot" style="top: 90%; right: 42%"></span>
+      </div>
       <div class="container">
-        <figure class="photo" data-animate="scale">
-          <img src="assets/foto-padres.jpg" alt="Johana y Jhon en la playa, esperando a Nihan" width="800" height="800" loading="lazy" decoding="async">
-          <span class="photo__badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.7-10-9.3C.5 8 2 4.5 5.4 4c2.1-.3 4 .8 4.9 2.4C11.1 4.8 13 3.7 15.1 4c3.4.5 4.9 4 3.4 7.7C16 16.3 12 21 12 21z"/></svg>
-          </span>
+        <figure class="shoes" data-animate="scale">
+          <svg class="shoes__art" viewBox="0 0 240 196" role="img" aria-label="Zapatitos de bebé rosados con moñito, entre flores">
+            <defs>
+              <radialGradient id="zapato" cx="0.4" cy="0.4" r="0.75"><stop offset="0" stop-color="#fff3f5"/><stop offset="0.55" stop-color="#fad8df"/><stop offset="1" stop-color="#f0b9c5"/></radialGradient>
+              <symbol id="margarita" viewBox="-12 -12 24 24">
+                <g fill="#fff" stroke="#f1dde2" stroke-width="0.6">
+                  <ellipse rx="2.6" ry="7" transform="translate(0 -4)"/><ellipse rx="2.6" ry="7" transform="rotate(45) translate(0 -4)"/>
+                  <ellipse rx="2.6" ry="7" transform="rotate(90) translate(0 -4)"/><ellipse rx="2.6" ry="7" transform="rotate(135) translate(0 -4)"/>
+                  <ellipse rx="2.6" ry="7" transform="rotate(180) translate(0 -4)"/><ellipse rx="2.6" ry="7" transform="rotate(225) translate(0 -4)"/>
+                  <ellipse rx="2.6" ry="7" transform="rotate(270) translate(0 -4)"/><ellipse rx="2.6" ry="7" transform="rotate(315) translate(0 -4)"/>
+                </g>
+                <circle r="3.4" fill="#f6cc6a"/>
+              </symbol>
+              <path id="hoja" d="M0 0C6-6 16-6 24 0 16 6 6 6 0 0Z"/>
+              <g id="zapatito">
+                <!-- Suela y cuerpo -->
+                <path d="M50 6C75 6 87 32 87 64 87 104 80 142 50 146 20 142 13 104 13 64 13 32 25 6 50 6Z" fill="url(#zapato)" stroke="#e6a3b2" stroke-width="2"/>
+                <!-- Costura punteada -->
+                <path d="M21 72C20 104 28 134 50 138 72 134 80 104 79 72" fill="none" stroke="#eaa9b8" stroke-width="1.3" stroke-dasharray="2.2 3" stroke-linecap="round"/>
+                <!-- Abertura con el interior -->
+                <ellipse cx="50" cy="48" rx="28" ry="34" fill="#f3bfca" stroke="#e6a3b2" stroke-width="1.6"/>
+                <ellipse cx="50" cy="52" rx="21" ry="26" fill="#fde6eb"/>
+                <!-- Tirita -->
+                <path d="M23 80C37 89 63 89 77 80" fill="none" stroke="#f1b3c1" stroke-width="7" stroke-linecap="round"/>
+                <path d="M23 80C37 89 63 89 77 80" fill="none" stroke="#e6a3b2" stroke-width="1" stroke-dasharray="2 2.6"/>
+                <!-- Moñito -->
+                <path d="M47 91L37 112M53 91L63 112" stroke="#e39aac" stroke-width="5" stroke-linecap="round"/>
+                <path d="M47 91L37 112M53 91L63 112" stroke="#f5bccb" stroke-width="3" stroke-linecap="round"/>
+                <path d="M50 86C38 67 14 70 18 88 22 102 42 97 50 89Z M50 86C62 67 86 70 82 88 78 102 58 97 50 89Z" fill="#f5bccb" stroke="#e39aac" stroke-width="1.4"/>
+                <path d="M44 84C36 78 27 79 24 85M56 84C64 78 73 79 76 85" fill="none" stroke="#e39aac" stroke-width="1" stroke-linecap="round"/>
+                <circle cx="50" cy="87" r="4.8" fill="#f0a9ba" stroke="#e39aac" stroke-width="1.2"/>
+                <!-- Corazón en la punta y brillo -->
+                <path d="M50 128l-1.4-1.3C43.4 122 40 119 40 115.3c0-3 2.4-5.3 5.3-5.3 1.7 0 3.4.8 4.7 2.1 1.3-1.3 3-2.1 4.7-2.1 2.9 0 5.3 2.3 5.3 5.3 0 3.7-3.4 6.7-8.6 11.4Z" fill="#eea0b2"/>
+                <ellipse cx="30" cy="106" rx="5" ry="12" fill="#fff" opacity="0.5" transform="rotate(-12 30 106)"/>
+              </g>
+            </defs>
+            <!-- Hojitas y flores detrás -->
+            <g fill="#b8d0a4">
+              <use href="#hoja" transform="translate(30 132) rotate(-150) scale(1.4)"/>
+              <use href="#hoja" transform="translate(28 160) rotate(170) scale(1.3)"/>
+              <use href="#hoja" transform="translate(208 124) rotate(-30) scale(1.4)"/>
+              <use href="#hoja" transform="translate(212 158) rotate(10) scale(1.3)"/>
+            </g>
+            <g fill="#d4bce9">
+              <circle cx="214" cy="80" r="3.4"/><circle cx="220" cy="87" r="3"/><circle cx="210" cy="90" r="3.2"/><circle cx="218" cy="96" r="2.6"/>
+            </g>
+            <g fill="#f3aec0">
+              <circle cx="16" cy="102" r="3.4"/><circle cx="22" cy="95" r="3"/><circle cx="12" cy="92" r="2.8"/>
+            </g>
+            <use href="#margarita" x="10" y="104" width="30" height="30"/>
+            <use href="#margarita" x="196" y="96" width="34" height="34"/>
+            <use href="#margarita" x="194" y="148" width="26" height="26"/>
+            <use href="#margarita" x="18" y="150" width="24" height="24"/>
+            <!-- Zapatitos -->
+            <use href="#zapatito" transform="translate(28 36) rotate(-9 50 76) scale(0.95)"/>
+            <use href="#zapatito" transform="translate(116 40) rotate(9 50 76) scale(0.95)"/>
+            <!-- Corazones encima -->
+            <path d="M38 44l-1.6-1.5C30.6 37.2 27 34 27 29.8c0-3.4 2.7-6 6-6 1.9 0 3.8.9 5 2.4 1.2-1.5 3.1-2.4 5-2.4 3.3 0 6 2.6 6 6 0 4.2-3.6 7.4-9.4 12.7Z" fill="none" stroke="#eea0b2" stroke-width="1.6" stroke-dasharray="2.5 2.2"/>
+            <path d="M111 26l-1-1c-3.8-3.4-6.2-5.5-6.2-8.1 0-2 1.6-3.6 3.6-3.6 1.3 0 2.5.6 3.6 1.6 1-1 2.3-1.6 3.6-1.6 2 0 3.6 1.6 3.6 3.6 0 2.6-2.4 4.7-6.2 8.1Z" fill="#ec94a9" transform="rotate(-18 111 20)"/>
+            <path d="M129 22l-.8-.7c-3-2.7-4.9-4.4-4.9-6.4 0-1.6 1.3-2.9 2.9-2.9 1 0 2 .5 2.8 1.3.8-.8 1.8-1.3 2.8-1.3 1.6 0 2.9 1.3 2.9 2.9 0 2-1.9 3.7-4.9 6.4Z" fill="#f2aabb" transform="rotate(16 129 17)"/>
+          </svg>
         </figure>
         <p class="eyebrow" data-animate="fade-up">Con todo nuestro amor</p>
-        <h2 class="section__title section__title--sm" id="foto-titulo" data-animate="fade-up">Johana &amp; Jhon</h2>
+        <h2 class="section__title section__title--names" id="foto-titulo" data-animate="fade-up">Jhon &amp; Johana</h2>
+        <div class="divider" aria-hidden="true" data-animate="fade-up">
+          <svg><use href="#corazon"/></svg>
+        </div>
         <p class="section__text" data-animate="fade-up">Muy pronto seremos tres. Nos encantaría que nos acompañes en este momento tan lindo de nuestra vida.</p>
       </div>
     </section>
 
     <!-- 3. CUENTA REGRESIVA -->
     <section class="section" id="cuenta" aria-labelledby="cuenta-titulo">
-      <img class="deco-butterfly deco--tl butterfly-purple" src="assets/illustrations/mariposa-3.png" alt="" aria-hidden="true">
+      <img class="deco-butterfly deco--tl" src="assets/illustrations/mariposa-1.png" alt="" aria-hidden="true">
       <div class="container">
         <img class="bunny" src="assets/illustrations/conejito.png" alt="" data-animate="fade">
         <p class="eyebrow">Faltan</p>
@@ -222,7 +315,7 @@
 
     <!-- 6. RSVP -->
     <section class="section section--lavender" id="rsvp" aria-labelledby="rsvp-titulo">
-      <img class="deco-butterfly deco--br butterfly-purple" src="assets/illustrations/mariposa-3.png" alt="" aria-hidden="true">
+      <img class="deco-butterfly deco--br" src="assets/illustrations/mariposa.png" alt="" aria-hidden="true">
       <div class="container">
         <div data-animate="fade-up">
           <p class="eyebrow">Te esperamos</p>
@@ -268,6 +361,6 @@
     <p>Gracias por ser parte de este momento</p>
   </footer>
 
-  <script src="script.js?v=3" defer></script>
+  <script src="script.js?v=4" defer></script>
 </body>
 </html>

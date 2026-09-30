@@ -121,9 +121,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .section--soft { background: var(--bg-soft); }
 /* Fondos con degradado suave hacia el crema en los bordes,
    para que el cambio de color entre secciones no sea tan brusco */
-.section--mint {
+.section--pink {
   background: linear-gradient(to bottom,
-    var(--bg) 0%, var(--bg-lilac) 18%, var(--bg-lilac) 82%, var(--bg) 100%);
+    var(--bg) 0%, #fef8f9 25%, #fef8f9 75%, var(--bg) 100%);
 }
 .section--sky {
   background: linear-gradient(to bottom,
@@ -171,7 +171,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-size: var(--fs-eyebrow);
 }
 
-.section--mint .eyebrow { color: var(--accent-strong); }
+.section--pink .eyebrow { color: var(--accent-strong); }
 #cuenta .eyebrow { color: var(--sky-strong); }
 .section--sky .eyebrow { color: var(--gold-strong); }
 #mapa .eyebrow { color: var(--lavender-strong); }
@@ -292,18 +292,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* Corazoncitos y puntitos dorados de la portada */
-.hero-heart {
+.deco-heart {
   position: absolute;
   width: var(--z);
   height: var(--z);
   fill: #f0a9bb;
 }
-.hero-heart--line {
+.deco-heart--line {
   fill: none;
   stroke: var(--accent-strong);
   stroke-width: 2.2;
 }
-.hero-dot {
+.deco-dot {
   position: absolute;
   width: 0.35rem;
   height: 0.35rem;
@@ -313,8 +313,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-heart { animation: floatGentle 6s ease-in-out infinite; }
-  .hero-heart:nth-of-type(2n) { animation-duration: 7.5s; animation-delay: -2s; }
+  .deco-heart { animation: floatGentle 6s ease-in-out infinite; }
+  .deco-heart:nth-of-type(2n) { animation-duration: 7.5s; animation-delay: -2s; }
 }
 
 /* Mariposas que cruzan la portada: el span vuela, la imagen aletea.
@@ -326,8 +326,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   transform: translateX(var(--rest));
 }
 .flyer img { width: 100%; height: auto; }
-/* La mariposa azul, pasada a morado (las quietas de otras secciones) */
-.butterfly-purple { filter: hue-rotate(64deg) saturate(4.5) brightness(0.75); }
 .flyer--1 { top: 30%; --rest: 6vw; }
 .flyer--2 { top: 55%; --rest: 80vw; width: 2.8rem; }
 .flyer--4 { top: 14%; --rest: 75vw; width: 3.4rem; }
@@ -531,22 +529,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* Separador: línea — corazón — línea */
-.hero__divider {
+.divider {
   display: flex;
   align-items: center;
   gap: var(--s-1);
   width: min(60%, 12rem);
-  margin-bottom: var(--s-3);
+  margin: 0 auto var(--s-3);
 }
-.hero__divider::before,
-.hero__divider::after {
+.divider::before,
+.divider::after {
   content: "";
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent-strong));
 }
-.hero__divider::after { background: linear-gradient(90deg, var(--accent-strong), transparent); }
-.hero__divider svg {
+.divider::after { background: linear-gradient(90deg, var(--accent-strong), transparent); }
+.divider svg {
   width: 0.9rem;
   height: 0.9rem;
   fill: none;
@@ -563,43 +561,70 @@ button, input, select, textarea { font: inherit; color: inherit; }
   stroke-linejoin: round;
 }
 
-/* ---------- 2. Foto ---------- */
-.photo {
-  position: relative;
-  margin: 0 auto var(--s-3);
-  width: min(100%, 15rem);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 0.5rem solid var(--surface);
-  outline: 1.5px dashed var(--accent);
-  outline-offset: 0.6rem;
-  background: var(--surface);
-}
+/* ---------- 2. Zapatitos y nombres ---------- */
+/* Capa de adornos detrás del contenido de una sección */
+.section__decor { position: absolute; inset: 0; pointer-events: none; }
 
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.photo__badge {
+/* Adornos sueltos reutilizables: nube rosada, flor/mariposa que flota
+   y caminito punteado */
+.deco-cloud {
   position: absolute;
-  bottom: -0.5rem;
-  right: -0.5rem;
-  display: grid;
-  place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  background: var(--accent-strong);
-  box-shadow: var(--shadow);
+  aspect-ratio: 200 / 110;
+  height: auto;
+  fill: url(#nubeRosa);
+  opacity: 0.8;
+  filter: drop-shadow(0 4px 6px rgba(214, 140, 160, 0.15));
 }
-.photo__badge svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  fill: #fff;
+.deco-float { position: absolute; height: auto; }
+
+/* Montañitas rosadas al pie de la sección, difuminadas hacia el crema */
+.hills {
+  position: absolute;
+  left: -3%;
+  bottom: 0;
+  width: 106%;
+  height: 9rem;
+  filter: blur(3px);
+}
+.deco-trail {
+  position: absolute;
+  height: auto;
+  fill: none;
+  stroke: var(--accent-strong);
+  stroke-width: 1.6;
+  stroke-dasharray: 1 4;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .deco-cloud { animation: cloudDrift 10s ease-in-out infinite alternate; }
+  .deco-cloud:nth-child(2n) { animation-duration: 12s; animation-delay: -4s; }
+  .deco-float { animation: floatButterfly 6.5s ease-in-out infinite; }
+}
+
+/* Zapatitos de bebé entre flores y hojitas (dibujados en el SVG) */
+.shoes {
+  width: min(86%, 18rem);
+  margin: var(--s-3) auto var(--s-3);
+}
+.shoes__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0.4rem 0.6rem rgba(214, 140, 160, 0.25));
+}
+
+/* Espacio extra abajo para que el texto no quede sobre las montañitas */
+#foto { padding-bottom: calc(var(--section-py) + 4.5rem); }
+
+/* Nombres de los papás con la misma letra de "Nihan" */
+.section__title--names {
+  font-family: var(--font-name);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 2.2rem + 4vw, 3.6rem);
+  color: var(--ink);
+  margin-bottom: var(--s-1);
 }
 
 /* ---------- 3. Cuenta regresiva ---------- */
@@ -1276,8 +1301,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
     border-right: 1px dashed var(--line);
   }
   .card:last-child { border-right: none; }
-
-  .photo { width: min(100%, 23rem); }
 }
 
 /* ==========================================================================
