@@ -18,7 +18,7 @@
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
   <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <!-- ?v=: cambiarlo en cada subida para que los celulares no usen el CSS/JS viejo guardado -->
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
 
@@ -69,6 +69,16 @@
       <span class="deco-dot deco-dot--pink" style="top: 47%; right: 4%"></span>
       <span class="deco-dot deco-dot--pink" style="bottom: 30%; right: 22%"></span>
       <span class="deco-dot deco-dot--pink" style="bottom: 17%; left: 52%"></span>
+      <!-- Estrellitas y puntitos al final -->
+      <svg class="star star--7" fill="url(#estrella)" stroke="#e8a9b7"><use href="#estrellita"/></svg>
+      <svg class="star star--8" fill="url(#estrella)" stroke="#e8a9b7"><use href="#estrellita"/></svg>
+      <svg class="star star--9" fill="url(#estrella)" stroke="#e8a9b7"><use href="#estrellita"/></svg>
+      <span class="deco-dot deco-dot--pink" style="bottom: 11%; left: 12%"></span>
+      <span class="deco-dot" style="bottom: 7%; left: 34%"></span>
+      <span class="deco-dot deco-dot--pink" style="bottom: 4%; left: 62%"></span>
+      <span class="deco-dot" style="bottom: 9%; right: 8%"></span>
+      <span class="deco-dot deco-dot--pink" style="bottom: 3%; left: 20%"></span>
+      <span class="deco-dot" style="bottom: 12%; left: 70%"></span>
     </div>
 
     <div class="envelope__stage">
@@ -391,6 +401,6 @@
     <p>Gracias por ser parte de este momento</p>
   </footer>
 
-  <script src="script.js?v=12" defer></script>
+  <script src="script.js?v=13" defer></script>
 </body>
 </html>
