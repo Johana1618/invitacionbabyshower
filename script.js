@@ -149,7 +149,27 @@ function initMusic() {
     });
   }
 
+  // Si la persona sale del navegador o cambia de pestaña, la música se pausa;
+  // al volver sigue sonando (solo si estaba sonando antes de salir)
+  let pausedByLeaving = false;
+  const leave = () => {
+    if (audio.paused) return;
+    audio.pause();
+    setState(false);
+    pausedByLeaving = true;
+  };
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      leave();
+    } else if (pausedByLeaving) {
+      pausedByLeaving = false;
+      play();
+    }
+  });
+  window.addEventListener('pagehide', leave);
+
   btn.addEventListener('click', () => {
+    pausedByLeaving = false;
     if (audio.paused) {
       play();
     } else {
