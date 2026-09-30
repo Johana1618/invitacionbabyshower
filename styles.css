@@ -1066,8 +1066,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .cloud--3 { width: 32%; max-width: 10rem; top: 11%; left: 38%; }
 .cloud--4 { width: 30%; max-width: 9.5rem; bottom: 19%; right: -8%; }
 /* Nubes rosadas al final */
-.cloud--6 { width: 46%; max-width: 14rem; bottom: -4%; left: -14%; }
-.cloud--7 { width: 48%; max-width: 14rem; bottom: -3%; right: -16%; }
+.cloud--6 { width: 46%; max-width: 14rem; bottom: 7%; left: -14%; }
+.cloud--7 { width: 48%; max-width: 14rem; bottom: 8%; right: -16%; }
 
 .star { width: 2.2rem; height: 2.2rem; }
 .star--1 { top: 22%; left: 8%; }
