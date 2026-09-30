@@ -592,6 +592,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   height: auto;
   margin: var(--s-2) auto var(--s-3);
 }
+/* La cigüeña de los zapatitos, un poco más pequeña que las demás */
+#foto .scene { width: min(68%, 14.5rem); }
 @media (prefers-reduced-motion: no-preference) {
   .scene.is-visible { animation: floatGentle 6s ease-in-out infinite; }
 }
