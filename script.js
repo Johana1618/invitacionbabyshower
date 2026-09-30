@@ -7,8 +7,10 @@ const CONFIG = {
   eventDurationHours: 4,
   eventTitle: 'Baby Shower de Nihan',
 
-  // Dirección que se usa en el mapa, en "Abrir en Google Maps" y en el calendario
-  mapQuery: 'San Carlos, Antioquia, Colombia',
+  // Punto exacto (latitud, longitud) para el mapa y "Abrir en Google Maps"
+  mapQuery: '6.165053,-75.035037',
+  // Dirección legible que se pone como lugar en "Agregar al calendario"
+  placeName: 'Finca Guadalupe, Vereda Dos Quebradas, San Carlos, Antioquia',
 
   // Canción: ruta al archivo en assets/ (ej. 'assets/cancion.mp3').
   // Vacío = el botón de música no aparece.
@@ -99,7 +101,7 @@ function initLinks() {
   const q = encodeURIComponent(CONFIG.mapQuery);
 
   const frame = document.getElementById('mapFrame');
-  if (frame) frame.src = `https://www.google.com/maps?q=${q}&output=embed`;
+  if (frame) frame.src = `https://www.google.com/maps?q=${q}&z=17&output=embed`;
 
   const mapLink = document.getElementById('mapLink');
   if (mapLink) mapLink.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
@@ -113,7 +115,7 @@ function initLinks() {
       action: 'TEMPLATE',
       text: CONFIG.eventTitle,
       dates: `${fmt(start)}/${fmt(end)}`,
-      location: CONFIG.mapQuery,
+      location: `${CONFIG.placeName} (${CONFIG.mapQuery})`,
     });
     calLink.href = `https://calendar.google.com/calendar/render?${params}`;
   }
