@@ -982,22 +982,28 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* ---------- Footer ---------- */
+/* Sube sobre el espacio de las montañitas de la confirmación, más cerca del
+   botón; sin fondo propio para que las montañitas se vean detrás */
 .footer {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--s-1);
-  padding: var(--s-5) var(--gutter) max(var(--s-5), env(safe-area-inset-bottom));
+  margin-top: -6rem;
+  padding: 0 var(--gutter) max(var(--s-5), env(safe-area-inset-bottom));
   text-align: center;
   font-family: var(--font-script);
-  font-size: 1.5rem;
+  font-size: clamp(1.9rem, 1.6rem + 1.5vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--accent-strong);
-  background: var(--bg);
 }
 
 .footer__heart {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.7rem;
+  height: 1.7rem;
   color: var(--accent);
   fill: var(--accent);
 }
