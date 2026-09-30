@@ -8,7 +8,7 @@ const CONFIG = {
   eventTitle: 'Baby Shower de Nihan',
 
   // Punto exacto (latitud, longitud) para el mapa y "Abrir en Google Maps"
-  mapQuery: '6.165053,-75.035037',
+  mapQuery: '6.165645,-75.032913',
   // Dirección legible que se pone como lugar en "Agregar al calendario"
   placeName: 'Finca Guadalupe, Vereda Dos Quebradas, San Carlos, Antioquia',
 
