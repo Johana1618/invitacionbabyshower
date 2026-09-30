@@ -13,6 +13,9 @@ const CONFIG = {
   // Canción: ruta al archivo en assets/ (ej. 'assets/cancion.mp3').
   // Vacío = el botón de música no aparece.
   songSrc: 'assets/cancion.wav',
+  // Segundo en que termina la intro instrumental: al llegar ahí la canción
+  // vuelve al inicio (así no suena la parte con letra). 0 = suena completa.
+  songIntroEnd: 0,
 
   // Endpoint del RSVP (Formspree, Getform, Google Apps Script, etc.).
   // Vacío = modo demostración: el formulario muestra éxito sin enviar nada.
@@ -136,6 +139,13 @@ function initMusic() {
   };
 
   audio.addEventListener('error', () => { btn.hidden = true; });
+
+  // Solo la intro: un poco antes del final configurado, vuelve al inicio
+  if (CONFIG.songIntroEnd > 0) {
+    audio.addEventListener('timeupdate', () => {
+      if (audio.currentTime >= CONFIG.songIntroEnd - 0.25) audio.currentTime = 0;
+    });
+  }
 
   btn.addEventListener('click', () => {
     if (audio.paused) {

@@ -18,7 +18,7 @@
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
   <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <!-- ?v=: cambiarlo en cada subida para que los celulares no usen el CSS/JS viejo guardado -->
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -124,8 +124,6 @@
         <!-- Nubes suaves a los lados -->
         <svg class="hero-cloud hero-cloud--1" fill="url(#nubeRosa)"><use href="#nube"/></svg>
         <svg class="hero-cloud hero-cloud--2" fill="url(#nubeGris)"><use href="#nube"/></svg>
-        <svg class="hero-cloud hero-cloud--3" fill="url(#nubeRosa)"><use href="#nube"/></svg>
-        <svg class="hero-cloud hero-cloud--4" fill="url(#nubeGris)"><use href="#nube"/></svg>
         <svg class="hero-cloud hero-cloud--5" fill="url(#nubeRosa)"><use href="#nube"/></svg>
         <!-- Corazoncitos (rellenos y de contorno) y puntitos dorados -->
         <svg class="deco-heart" style="top: 8%; right: 32%; --z: 0.7rem"><use href="#corazon"/></svg>
@@ -176,24 +174,16 @@
           <path d="M0 50C60 20 120 22 180 42S300 18 400 36V100H0Z" fill="url(#colinaAtras)"/>
           <path d="M0 72C70 44 140 50 210 66S340 52 400 62V100H0Z" fill="url(#colinaFrente)"/>
         </svg>
-        <svg class="deco-cloud" style="top: 1%; left: -7%; width: 34%"><use href="#nube"/></svg>
-        <svg class="deco-cloud" style="top: 17%; right: -6%; width: 28%"><use href="#nube"/></svg>
-        <svg class="deco-cloud" style="bottom: 2%; left: -8%; width: 36%"><use href="#nube"/></svg>
-        <svg class="deco-cloud" style="bottom: 10%; right: -7%; width: 30%"><use href="#nube"/></svg>
         <img class="deco-float" style="top: 5%; right: 16%; width: 2.8rem" src="assets/illustrations/mariposa-1.png" alt="">
-        <img class="deco-float" style="top: 84%; left: 4%; width: 2.5rem; animation-delay: -2s" src="assets/illustrations/mariposa.png" alt="">
         <svg class="deco-trail" viewBox="0 0 120 60" style="top: 8%; right: -2%; width: 5rem"><path d="M2 40C20 44 34 40 44 30 50 22 46 12 40 12 34 12 32 22 40 26 56 34 90 26 118 34"/></svg>
-        <svg class="deco-trail" viewBox="0 0 120 60" style="top: 79%; left: 14%; width: 5.5rem"><path d="M2 20C18 30 30 40 44 38 54 36 56 24 50 20 44 16 38 24 44 32 56 46 90 48 118 42"/></svg>
         <img class="deco-float" style="top: 28%; left: 5%; width: 2rem; animation-delay: -1s" src="assets/illustrations/flor-1.png" alt="">
         <img class="deco-float" style="top: 47%; right: 4%; width: 2.1rem; animation-delay: -3s" src="assets/illustrations/flor-2.png" alt="">
-        <img class="deco-float" style="bottom: 4%; right: 7%; width: 2.3rem; animation-delay: -4s" src="assets/illustrations/flor-2.png" alt="">
         <svg class="deco-heart" style="top: 13%; left: 14%; --z: 0.7rem"><use href="#corazon"/></svg>
         <svg class="deco-heart deco-heart--line" style="top: 25%; right: 9%; --z: 0.9rem"><use href="#corazon"/></svg>
         <svg class="deco-heart deco-heart--line" style="top: 40%; left: 6%; --z: 0.85rem"><use href="#corazon"/></svg>
         <svg class="deco-heart" style="top: 39%; right: 7%; --z: 0.7rem"><use href="#corazon"/></svg>
         <svg class="deco-heart deco-heart--line" style="top: 60%; left: 7%; --z: 0.9rem"><use href="#corazon"/></svg>
         <svg class="deco-heart" style="top: 82%; right: 26%; --z: 0.7rem"><use href="#corazon"/></svg>
-        <svg class="deco-heart deco-heart--line" style="bottom: 7%; left: 38%; --z: 0.8rem"><use href="#corazon"/></svg>
         <span class="deco-dot deco-dot--pink" style="top: 9%; left: 30%"></span>
         <span class="deco-dot" style="top: 20%; left: 10%"></span>
         <span class="deco-dot deco-dot--pink" style="top: 35%; right: 12%"></span>
@@ -204,7 +194,7 @@
       <div class="container">
         <img class="scene" src="assets/illustrations/ciguena-zapatitos.png" alt="Cigüeña con unos zapatitos de bebé rosados" width="522" height="540" loading="lazy" decoding="async" data-animate="scale">
         <p class="eyebrow" data-animate="fade-up">Con todo nuestro amor</p>
-        <h2 class="section__title section__title--names" id="foto-titulo" data-animate="fade-up">Jhon &amp; Johana</h2>
+        <h2 class="section__title section__title--names" id="foto-titulo" data-animate="fade-up">Jhon y Johana</h2>
         <div class="divider" aria-hidden="true" data-animate="fade-up">
           <svg><use href="#corazon"/></svg>
         </div>
@@ -350,7 +340,7 @@
         <span class="deco-dot" style="top: 64%; right: 3%"></span>
       </div>
       <div class="container">
-        <img class="rsvp__stork" src="assets/illustrations/ciguena.png" alt="" data-animate="fade">
+        <img class="rsvp__stork" src="assets/illustrations/ciguena-bebe.png" alt="" width="724" height="492" loading="lazy" decoding="async" data-animate="fade">
         <div data-animate="fade-up">
           <p class="eyebrow">Te esperamos</p>
           <div class="divider divider--sm" aria-hidden="true">
@@ -404,6 +394,6 @@
     <p>Gracias por ser parte de este momento</p>
   </footer>
 
-  <script src="script.js?v=5" defer></script>
+  <script src="script.js?v=6" defer></script>
 </body>
 </html>

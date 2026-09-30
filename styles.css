@@ -287,14 +287,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .hero-cloud--1 { width: 30%; max-width: 11rem; top: 27%; left: -5%; }
 .hero-cloud--2 { width: 26%; max-width: 10rem; top: 36%; right: -4%; }
-.hero-cloud--3 { width: 28%; max-width: 10.5rem; top: 49%; left: -4%; }
-.hero-cloud--4 { width: 30%; max-width: 11rem; top: 80%; right: -3%; }
 .hero-cloud--5 { width: 20%; max-width: 8rem; top: 1%; right: 3%; }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-cloud { animation: cloudDrift 9s ease-in-out infinite alternate; }
   .hero-cloud--2, .hero-cloud--5 { animation-duration: 11s; animation-delay: -3s; }
-  .hero-cloud--3 { animation-duration: 10s; animation-delay: -6s; }
 }
 
 /* Corazoncitos y puntitos dorados de la portada */
@@ -623,10 +620,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: var(--s-1);
 }
 
-/* Cigüeña con el cochecito arriba de "Te esperamos" */
+/* Cigüeña con la bebé arriba de "Te esperamos" */
 .rsvp__stork {
   display: block;
-  width: clamp(10rem, 44vw, 13rem);
+  width: clamp(15rem, 82vw, 21rem);
   height: auto;
   margin: 0 auto var(--s-2);
 }
