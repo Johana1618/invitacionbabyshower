@@ -936,7 +936,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .rsvp-result__thanks {
-  margin-top: var(--s-3);
+  margin-top: var(--s-2);
   font-family: var(--font-script);
   font-weight: 600;
   font-size: clamp(1.65rem, 1.45rem + 1vw, 2rem);

@@ -350,7 +350,7 @@ function initRsvp() {
       // Alegre y animado si va a venir; sencillo y tranquilo si no
       if (attending) {
         resultTitle.textContent = '¡Nos vemos allá!';
-        resultText.textContent = 'Gracias por confirmar tu asistencia 🤍';
+        resultText.textContent = '';
         result.className = 'rsvp-result is-yes';
       } else {
         resultTitle.textContent = 'Gracias por avisarnos';
