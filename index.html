@@ -32,7 +32,7 @@
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
   <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <!-- ?v=: cambiarlo en cada subida para que los celulares no usen el CSS/JS viejo guardado -->
-  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body>
 
@@ -373,8 +373,8 @@
       <div class="container">
         <img class="rsvp__stork" src="assets/illustrations/ciguena-bebe.png?v=7" alt="" width="1448" height="984" loading="lazy" decoding="async" data-animate="fade">
         <div data-animate="fade-up">
-          <p class="eyebrow">Te esperamos</p>
-          <div class="divider divider--sm" aria-hidden="true">
+          <p class="eyebrow" id="rsvpEyebrow">Te esperamos</p>
+          <div class="divider divider--sm" id="rsvpDivider" aria-hidden="true">
             <svg><use href="#corazon"/></svg>
           </div>
           <h2 class="section__title" id="rsvp-titulo">Confirma tu asistencia</h2>
@@ -422,6 +422,6 @@
     <p>Gracias por ser parte de este momento</p>
   </footer>
 
-  <script src="script.js?v=22" defer></script>
+  <script src="script.js?v=23" defer></script>
 </body>
 </html>

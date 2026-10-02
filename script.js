@@ -360,6 +360,13 @@ function initRsvp() {
 
       form.style.display = 'none';
       if (sectionTitle) sectionTitle.style.display = 'none';
+      // Si no va a venir, tampoco tiene sentido el "Te esperamos"
+      if (!attending) {
+        ['rsvpEyebrow', 'rsvpDivider'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+      }
       result.hidden = false;
       requestAnimationFrame(() => requestAnimationFrame(() => {
         result.classList.add('is-visible');
