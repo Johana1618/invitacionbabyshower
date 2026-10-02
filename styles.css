@@ -934,9 +934,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .rsvp-result__text {
   color: var(--ink-soft);
 }
+.rsvp-result__title:empty,
+.rsvp-result__text:empty { display: none; }
 
 .rsvp-result__thanks {
-  margin-top: var(--s-2);
+  margin-top: 0;
   font-family: var(--font-script);
   font-weight: 600;
   font-size: clamp(1.65rem, 1.45rem + 1vw, 2rem);

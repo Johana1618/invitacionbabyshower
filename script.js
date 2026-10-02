@@ -360,7 +360,7 @@ function initRsvp() {
   });
 
   // El "Gracias por ser parte de este momento" del final se quita: si viene
-  // se muestra justo debajo de "¡Nos vemos allá!"; si no viene, no se
+  // se muestra en el mensaje de confirmación; si no viene, no se
   // muestra (y tampoco el "Te esperamos")
   const footer = document.querySelector('.footer');
   const thanks = document.getElementById('rsvpResultThanks');
@@ -368,7 +368,7 @@ function initRsvp() {
 
   function showResult(attending) {
     // Alegre y animado si va a venir; sencillo y tranquilo si no
-    resultTitle.textContent = attending ? '¡Nos vemos allá!' : 'Gracias por avisarnos';
+    resultTitle.textContent = attending ? '' : 'Gracias por avisarnos';
     resultText.textContent = '';
     result.className = attending ? 'rsvp-result is-yes' : 'rsvp-result is-no';
 
