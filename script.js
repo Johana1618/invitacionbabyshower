@@ -333,6 +333,11 @@ function initRsvp() {
 
     const attending = data.get('asistencia') === 'si';
 
+    // El mensaje sale al instante y el envío sigue en segundo plano: Apps
+    // Script tarda varios segundos en responder. "keepalive" hace que el
+    // envío termine aunque la persona cierre la página.
+    showResult(attending);
+
     try {
       if (CONFIG.rsvpEndpoint) {
         // Google Apps Script no deja leer la respuesta desde el navegador
@@ -341,48 +346,52 @@ function initRsvp() {
         await fetch(CONFIG.rsvpEndpoint, {
           method: 'POST',
           mode: 'no-cors',
+          keepalive: true,
           body: data,
         });
-      } else {
-        await new Promise((r) => setTimeout(r, 500)); // modo demostración
       }
-
-      // Alegre y animado si va a venir; sencillo y tranquilo si no
-      if (attending) {
-        resultTitle.textContent = '¡Nos vemos allá!';
-        resultText.textContent = '';
-        result.className = 'rsvp-result is-yes';
-      } else {
-        resultTitle.textContent = 'Gracias por avisarnos';
-        resultText.textContent = '';
-        result.className = 'rsvp-result is-no';
-      }
-
-      form.style.display = 'none';
-      if (sectionTitle) sectionTitle.style.display = 'none';
-      // El "Gracias por ser parte de este momento" del final se quita: si viene
-      // se muestra justo debajo de "¡Nos vemos allá!"; si no viene, no se
-      // muestra (y tampoco el "Te esperamos")
-      const footer = document.querySelector('.footer');
-      if (footer) footer.style.visibility = 'hidden';
-      const thanks = document.getElementById('rsvpResultThanks');
-      if (thanks) thanks.hidden = !attending;
-      if (!attending) {
-        ['rsvpEyebrow', 'rsvpDivider'].forEach((id) => {
-          const el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
-      }
-      result.hidden = false;
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        result.classList.add('is-visible');
-      }));
     } catch {
-      formError.textContent = 'No pudimos enviar tu confirmación. Inténtalo de nuevo en un momento.';
+      // Falló la conexión: se vuelve al formulario para intentarlo de nuevo
+      hideResult();
+      formError.textContent = 'No pudimos enviar tu confirmación. Revisa tu conexión e inténtalo de nuevo.';
     } finally {
       submit.disabled = false;
     }
   });
+
+  // El "Gracias por ser parte de este momento" del final se quita: si viene
+  // se muestra justo debajo de "¡Nos vemos allá!"; si no viene, no se
+  // muestra (y tampoco el "Te esperamos")
+  const footer = document.querySelector('.footer');
+  const thanks = document.getElementById('rsvpResultThanks');
+  const notComingHidden = ['rsvpEyebrow', 'rsvpDivider'].map((id) => document.getElementById(id)).filter(Boolean);
+
+  function showResult(attending) {
+    // Alegre y animado si va a venir; sencillo y tranquilo si no
+    resultTitle.textContent = attending ? '¡Nos vemos allá!' : 'Gracias por avisarnos';
+    resultText.textContent = '';
+    result.className = attending ? 'rsvp-result is-yes' : 'rsvp-result is-no';
+
+    form.style.display = 'none';
+    if (sectionTitle) sectionTitle.style.display = 'none';
+    if (footer) footer.style.visibility = 'hidden';
+    if (thanks) thanks.hidden = !attending;
+    notComingHidden.forEach((el) => { el.style.display = attending ? '' : 'none'; });
+
+    result.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      result.classList.add('is-visible');
+    }));
+  }
+
+  function hideResult() {
+    result.hidden = true;
+    result.classList.remove('is-visible');
+    form.style.display = '';
+    if (sectionTitle) sectionTitle.style.display = '';
+    if (footer) footer.style.visibility = '';
+    notComingHidden.forEach((el) => { el.style.display = ''; });
+  }
 }
 
 /* ---------- Inicio ---------- */
