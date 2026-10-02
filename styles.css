@@ -955,7 +955,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .rsvp-result.is-no .rsvp-result__title {
   font-style: normal;
   font-size: 1.4rem;
-  color: var(--ink);
+  color: var(--accent-strong); /* rosado */
 }
 .rsvp-result.is-no {
   opacity: 0;

@@ -360,12 +360,15 @@ function initRsvp() {
 
       form.style.display = 'none';
       if (sectionTitle) sectionTitle.style.display = 'none';
-      // Si no va a venir, tampoco tiene sentido el "Te esperamos"
+      // Si no va a venir, tampoco tienen sentido el "Te esperamos" ni el
+      // "Gracias por ser parte de este momento" del final
       if (!attending) {
         ['rsvpEyebrow', 'rsvpDivider'].forEach((id) => {
           const el = document.getElementById(id);
           if (el) el.style.display = 'none';
         });
+        const footer = document.querySelector('.footer');
+        if (footer) footer.style.visibility = 'hidden';
       }
       result.hidden = false;
       requestAnimationFrame(() => requestAnimationFrame(() => {
