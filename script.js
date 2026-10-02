@@ -354,7 +354,7 @@ function initRsvp() {
         result.className = 'rsvp-result is-yes';
       } else {
         resultTitle.textContent = 'Gracias por avisarnos';
-        resultText.textContent = 'Te vamos a extrañar ese día.';
+        resultText.textContent = '';
         result.className = 'rsvp-result is-no';
       }
 
