@@ -359,10 +359,8 @@ function initRsvp() {
     }
   });
 
-  // El "Gracias por ser parte de este momento" del final se quita: si viene
-  // se muestra en el mensaje de confirmación; si no viene, no se
-  // muestra (y tampoco el "Te esperamos")
-  const footer = document.querySelector('.footer');
+  // "Gracias por ser parte de este momento" solo aparece al confirmar que
+  // sí viene; si no viene, no se muestra (y tampoco el "Te esperamos")
   const thanks = document.getElementById('rsvpResultThanks');
   const notComingHidden = ['rsvpEyebrow', 'rsvpDivider'].map((id) => document.getElementById(id)).filter(Boolean);
 
@@ -374,7 +372,6 @@ function initRsvp() {
 
     form.style.display = 'none';
     if (sectionTitle) sectionTitle.style.display = 'none';
-    if (footer) footer.style.visibility = 'hidden';
     if (thanks) thanks.hidden = !attending;
     notComingHidden.forEach((el) => { el.style.display = attending ? '' : 'none'; });
 
@@ -389,7 +386,6 @@ function initRsvp() {
     result.classList.remove('is-visible');
     form.style.display = '';
     if (sectionTitle) sectionTitle.style.display = '';
-    if (footer) footer.style.visibility = '';
     notComingHidden.forEach((el) => { el.style.display = ''; });
   }
 }
