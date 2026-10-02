@@ -14,7 +14,7 @@ const CONFIG = {
 
   // Canción: ruta al archivo en assets/ (ej. 'assets/cancion.mp3').
   // Vacío = el botón de música no aparece.
-  songSrc: 'assets/cancion.wav',
+  songSrc: 'assets/a-thousand-years.mp3',
   // Segundo en que termina la intro instrumental: al llegar ahí la canción
   // vuelve al inicio (así no suena la parte con letra). 0 = suena completa.
   songIntroEnd: 0,
