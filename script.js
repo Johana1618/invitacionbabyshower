@@ -130,13 +130,17 @@ function initMusic() {
 
   btn.hidden = false;
 
+  // Se descarga mientras se ve el sobre, para que suene apenas se abra
+  audio.src = CONFIG.songSrc;
+  audio.preload = 'auto';
+  audio.load();
+
   const setState = (playing) => {
     btn.setAttribute('aria-pressed', String(playing));
     btn.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproducir música');
   };
 
   const play = () => {
-    if (!audio.src) audio.src = CONFIG.songSrc; // se carga solo al primer toque
     audio.play().then(() => setState(true)).catch(() => setState(false));
   };
 
