@@ -360,15 +360,18 @@ function initRsvp() {
 
       form.style.display = 'none';
       if (sectionTitle) sectionTitle.style.display = 'none';
-      // Si no va a venir, tampoco tienen sentido el "Te esperamos" ni el
-      // "Gracias por ser parte de este momento" del final
+      // El "Gracias por ser parte de este momento" del final se quita: si viene
+      // se muestra justo debajo de "¡Nos vemos allá!"; si no viene, no se
+      // muestra (y tampoco el "Te esperamos")
+      const footer = document.querySelector('.footer');
+      if (footer) footer.style.visibility = 'hidden';
+      const thanks = document.getElementById('rsvpResultThanks');
+      if (thanks) thanks.hidden = !attending;
       if (!attending) {
         ['rsvpEyebrow', 'rsvpDivider'].forEach((id) => {
           const el = document.getElementById(id);
           if (el) el.style.display = 'none';
         });
-        const footer = document.querySelector('.footer');
-        if (footer) footer.style.visibility = 'hidden';
       }
       result.hidden = false;
       requestAnimationFrame(() => requestAnimationFrame(() => {

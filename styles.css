@@ -923,12 +923,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding-block: var(--s-2);
 }
 
-.rsvp-result__emoji {
-  font-size: 2.25rem;
-  line-height: 1;
-  margin-bottom: var(--s-1);
-}
-
 .rsvp-result__title {
   font-family: var(--font-script);
   font-weight: 600;
@@ -941,6 +935,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--ink-soft);
 }
 
+.rsvp-result__thanks {
+  margin-top: var(--s-3);
+  font-family: var(--font-script);
+  font-weight: 600;
+  font-size: clamp(1.65rem, 1.45rem + 1vw, 2rem);
+  line-height: 1.2;
+  color: var(--accent-strong);
+}
+
 /* Respuesta "sí": entrada alegre con un pequeño rebote */
 .rsvp-result.is-yes {
   opacity: 0;
@@ -950,8 +953,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   animation: rsvpPop 650ms var(--ease-out) both;
 }
 
-/* Respuesta "no": mensaje sencillo, solo un fundido tranquilo, sin rebote ni emoji */
-.rsvp-result.is-no .rsvp-result__emoji { display: none; }
+/* Respuesta "no": mensaje sencillo, solo un fundido tranquilo, sin rebote */
 .rsvp-result.is-no .rsvp-result__title {
   font-style: normal;
   font-size: 1.4rem;

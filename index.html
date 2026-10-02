@@ -32,7 +32,7 @@
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se va a animar -->
   <script>document.documentElement.classList.add('js', 'has-envelope');</script>
   <!-- ?v=: cambiarlo en cada subida para que los celulares no usen el CSS/JS viejo guardado -->
-  <link rel="stylesheet" href="styles.css?v=24">
+  <link rel="stylesheet" href="styles.css?v=25">
 </head>
 <body>
 
@@ -407,9 +407,10 @@
           </form>
 
           <div class="rsvp-result" id="rsvpResult" role="status" aria-live="polite" hidden>
-            <p class="rsvp-result__emoji" aria-hidden="true">🎉</p>
             <p class="rsvp-result__title" id="rsvpResultTitle"></p>
             <p class="rsvp-result__text" id="rsvpResultText"></p>
+            <!-- Solo si viene: el agradecimiento del final se muestra aquí -->
+            <p class="rsvp-result__thanks" id="rsvpResultThanks" hidden>Gracias por ser parte de este momento</p>
           </div>
         </div>
       </div>
@@ -422,6 +423,6 @@
     <p>Gracias por ser parte de este momento</p>
   </footer>
 
-  <script src="script.js?v=24" defer></script>
+  <script src="script.js?v=25" defer></script>
 </body>
 </html>
