@@ -21,7 +21,7 @@ const CONFIG = {
 
   // Endpoint del RSVP (Formspree, Getform, Google Apps Script, etc.).
   // Vacío = modo demostración: el formulario muestra éxito sin enviar nada.
-  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbznwiKc5bQgfLfT7dxYwPPqWBaVHZrOO0Zy-yBkf6O49RErAJQgjv_pYFWiuIo8svW1Gg/exec',
+  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycby71Bvloh0YIR3utLfopuvbDpdKx6-bC-jTi5ZxAXtKocSa7defruCRCi6-CqJ0bhRS/exec',
 };
 
 /* ========================================================================== */
