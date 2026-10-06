@@ -17,7 +17,7 @@ const CONFIG = {
   songSrc: 'assets/sonido-tiktok.mp3',
   // Segundo en que termina la intro instrumental: al llegar ahí la canción
   // vuelve al inicio (así no suena la parte con letra). 0 = suena completa.
-  songIntroEnd: 0,
+  songIntroEnd: 43.5,
 
   // Endpoint del RSVP (Formspree, Getform, Google Apps Script, etc.).
   // Vacío = modo demostración: el formulario muestra éxito sin enviar nada.
