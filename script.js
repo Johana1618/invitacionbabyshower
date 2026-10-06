@@ -3,7 +3,7 @@
    ========================================================================== */
 const CONFIG = {
   // Fecha y hora del evento (ISO 8601 con zona horaria; -05:00 = Colombia)
-  eventDate: '2026-11-15T15:00:00-05:00',
+  eventDate: '2026-11-15T15:30:00-05:00',
   eventDurationHours: 4,
   eventTitle: 'Baby Shower de Nihan',
 

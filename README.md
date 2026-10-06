@@ -17,7 +17,7 @@ Para verlo en local, abre `index.html` en el navegador, o sirve la carpeta con `
 - **Fecha de la cuenta regresiva, dirección del mapa y calendario**: al inicio de `script.js`, en el objeto `CONFIG`:
 
 ```js
-eventDate: '2026-11-15T15:00:00-05:00', // -05:00 = hora de Colombia
+eventDate: '2026-11-15T15:30:00-05:00', // -05:00 = hora de Colombia
 mapQuery: 'Salón Jardín Las Flores, Medellín',
 ```
 
